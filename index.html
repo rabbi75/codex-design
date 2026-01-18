@@ -17,6 +17,8 @@
       --text: #0f172a;
       --muted: #475569;
       --border: rgba(15, 23, 42, 0.12);
+      --panel: rgba(255, 255, 255, 0.86);
+      --panel-border: rgba(15, 23, 42, 0.12);
       --primary: #2563eb;
       --primary2: #38bdf8;
       --shadow: 0 24px 60px -32px rgba(37, 99, 235, 0.45);
@@ -31,6 +33,8 @@
       --text: #e2e8f0;
       --muted: #94a3b8;
       --border: rgba(148, 163, 184, 0.2);
+      --panel: rgba(15, 23, 42, 0.9);
+      --panel-border: rgba(148, 163, 184, 0.3);
       --primary: #60a5fa;
       --primary2: #22d3ee;
       --shadow: 0 26px 70px -35px rgba(96, 165, 250, 0.6);
@@ -48,6 +52,8 @@
     .text-muted { color: var(--muted); }
     .border-app { border-color: var(--border); }
     .glass { background: var(--glass); backdrop-filter: blur(16px); }
+    .panel { background: var(--panel); border: 1px solid var(--panel-border); backdrop-filter: blur(20px); }
+    .panel-inner { background: var(--surface); border: 1px solid var(--border); }
     .btn-primary { background: linear-gradient(135deg, var(--primary), var(--primary2)); color: #0b1020; }
     .glow { box-shadow: var(--shadow); }
     .hero-overlay { background: var(--hero-overlay); }
@@ -179,26 +185,26 @@
         </div>
       </div>
     </div>
-  </section>
-
-  <!-- Search -->
-  <section class="py-12 bg-app">
-    <div class="max-w-6xl mx-auto px-6">
-      <div class="surface border border-app rounded-[28px] p-2 glow">
-        <div class="surface-2 border border-app rounded-[24px] px-5 py-4">
-          <div class="flex items-center justify-between gap-4 flex-wrap">
+    <div class="mt-14 max-w-6xl mx-auto px-6">
+      <div class="panel rounded-[28px] p-2 glow">
+        <div class="panel-inner rounded-[24px] px-5 py-4">
+          <div class="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-4">
             <div>
-              <div class="text-xs uppercase tracking-[0.2em] text-muted">Universal Search</div>
-              <div class="mt-2 text-xl font-semibold">Find services across every category</div>
+              <div class="text-xs uppercase tracking-[0.3em] text-muted">Universal Search</div>
+              <div class="mt-2 text-lg font-semibold">Instantly find any service across the USA</div>
             </div>
-            <div class="flex items-center gap-2 text-xs text-muted">
+            <div class="flex flex-wrap gap-2 text-xs text-muted">
               <span class="px-3 py-1 rounded-full surface border border-app">Secure payments</span>
               <span class="px-3 py-1 rounded-full surface border border-app">Verified providers</span>
+              <span class="px-3 py-1 rounded-full surface border border-app">Live tracking</span>
             </div>
           </div>
-          <form id="searchForm" class="mt-6 grid lg:grid-cols-[1fr_auto_auto] gap-4 items-center">
+          <form id="searchForm" class="mt-5 grid lg:grid-cols-[1fr_auto_auto] gap-4 items-center">
             <div class="flex items-center gap-3 surface border border-app rounded-2xl px-4 py-3">
-              <span class="text-muted text-sm">Search</span>
+              <svg class="w-5 h-5 text-muted" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                <circle cx="11" cy="11" r="7"></circle>
+                <path d="M21 21l-4.3-4.3"></path>
+              </svg>
               <input id="searchInput" type="text" class="w-full bg-transparent text-app placeholder:text-muted focus:outline-none" placeholder="Search flights..." />
             </div>
             <select id="categoryFilter" class="px-4 py-3 rounded-2xl surface border border-app focus:outline-none focus:ring-2 focus:ring-[var(--primary)]">

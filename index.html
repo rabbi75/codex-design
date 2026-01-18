@@ -93,7 +93,7 @@
         <a class="hover:text-app transition" href="#how">How it Works</a>
         <a class="hover:text-app transition" href="#pricing">Pricing</a>
         <a class="hover:text-app transition" href="#reviews">Reviews</a>
-        <a class="hover:text-app transition" href="#faq">FAQ</a>
+        <a class="hover:text-app transition" href="#offers">Offers</a>
       </div>
       <div class="hidden lg:flex items-center gap-3">
         <button id="themeToggle" aria-label="Toggle theme" class="w-10 h-10 rounded-full border border-app surface-2 flex items-center justify-center focus:outline-none focus-visible:ring-2 focus-visible:ring-[var(--primary)]">
@@ -116,7 +116,7 @@
         <a href="#how">How it Works</a>
         <a href="#pricing">Pricing</a>
         <a href="#reviews">Reviews</a>
-        <a href="#faq">FAQ</a>
+        <a href="#offers">Offers</a>
         <div class="flex gap-3">
           <button id="themeToggleMobile" aria-label="Toggle theme" class="px-4 py-2 text-sm rounded-full border border-app surface-2">Theme</button>
           <button class="px-4 py-2 text-sm rounded-full border border-app surface-2">Sign in</button>
@@ -622,66 +622,70 @@
     </div>
   </section>
 
-  <!-- FAQ -->
-  <section id="faq" class="py-16 bg-app">
-    <div class="max-w-5xl mx-auto px-6">
-      <h2 class="text-3xl font-semibold">FAQ</h2>
-      <div class="mt-8 space-y-4">
-        <div class="faq-item surface border border-app rounded-3xl p-5">
-          <button class="faq-question w-full flex justify-between items-center text-left">
-            <span>Is it available across the USA?</span>
-            <span>+</span>
-          </button>
-          <div class="faq-answer hidden mt-3 text-sm text-muted">Yes, UniServe is live in all major US metro areas with expanding coverage.</div>
+  <!-- Offers -->
+  <section id="offers" class="py-16 bg-app">
+    <div class="max-w-7xl mx-auto px-6">
+      <div class="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-6">
+        <div>
+          <h2 class="text-3xl font-semibold">Today’s Featured Offers</h2>
+          <p class="mt-3 text-muted max-w-xl">Limited-time savings across delivery, travel, and business tools. Updated daily for USA metro areas.</p>
         </div>
-        <div class="faq-item surface border border-app rounded-3xl p-5">
-          <button class="faq-question w-full flex justify-between items-center text-left">
-            <span>How do refunds work?</span>
-            <span>+</span>
-          </button>
-          <div class="faq-answer hidden mt-3 text-sm text-muted">Refunds are processed to the original payment method within 5 to 7 business days.</div>
+        <button class="px-5 py-2 rounded-full border border-app surface-2 text-sm">View all offers</button>
+      </div>
+      <div class="mt-10 grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div class="surface border border-app rounded-3xl p-6 card">
+          <div class="flex items-center justify-between">
+            <span class="text-xs px-3 py-1 rounded-full surface-2 border border-app">Delivery</span>
+            <span class="text-xs text-muted">Ends in 12h</span>
+          </div>
+          <h3 class="mt-4 text-xl font-semibold">Free Grocery Delivery</h3>
+          <p class="mt-2 text-sm text-muted">Spend $40+ and get zero delivery fees in NYC, LA, and Chicago.</p>
+          <button class="mt-5 w-full py-3 rounded-full btn-primary font-semibold">Unlock Deal</button>
         </div>
-        <div class="faq-item surface border border-app rounded-3xl p-5">
-          <button class="faq-question w-full flex justify-between items-center text-left">
-            <span>Do you store payment info?</span>
-            <span>+</span>
-          </button>
-          <div class="faq-answer hidden mt-3 text-sm text-muted">We use tokenized payments and do not store full card details.</div>
+        <div class="surface border border-app rounded-3xl p-6 card">
+          <div class="flex items-center justify-between">
+            <span class="text-xs px-3 py-1 rounded-full surface-2 border border-app">Travel</span>
+            <span class="text-xs text-muted">Ends in 2d</span>
+          </div>
+          <h3 class="mt-4 text-xl font-semibold">Flight + Hotel Bundle</h3>
+          <p class="mt-2 text-sm text-muted">Save up to 18% on NYC to Miami bundles with flexible dates.</p>
+          <button class="mt-5 w-full py-3 rounded-full btn-primary font-semibold">Book Bundle</button>
         </div>
-        <div class="faq-item surface border border-app rounded-3xl p-5">
-          <button class="faq-question w-full flex justify-between items-center text-left">
-            <span>WhatsApp marketing compliance?</span>
-            <span>+</span>
-          </button>
-          <div class="faq-answer hidden mt-3 text-sm text-muted">We follow opt-in policies and compliance guidelines for message campaigns.</div>
+        <div class="surface border border-app rounded-3xl p-6 card">
+          <div class="flex items-center justify-between">
+            <span class="text-xs px-3 py-1 rounded-full surface-2 border border-app">Business</span>
+            <span class="text-xs text-muted">Ends in 6h</span>
+          </div>
+          <h3 class="mt-4 text-xl font-semibold">AI + WhatsApp Boost</h3>
+          <p class="mt-2 text-sm text-muted">Launch campaigns with AI copy and get 2,000 bonus credits.</p>
+          <button class="mt-5 w-full py-3 rounded-full btn-primary font-semibold">Activate Boost</button>
         </div>
-        <div class="faq-item surface border border-app rounded-3xl p-5">
-          <button class="faq-question w-full flex justify-between items-center text-left">
-            <span>Can I sell on marketplace?</span>
-            <span>+</span>
-          </button>
-          <div class="faq-answer hidden mt-3 text-sm text-muted">Yes. Create a seller profile and list products with verification.</div>
+        <div class="surface border border-app rounded-3xl p-6 card">
+          <div class="flex items-center justify-between">
+            <span class="text-xs px-3 py-1 rounded-full surface-2 border border-app">Events</span>
+            <span class="text-xs text-muted">Limited</span>
+          </div>
+          <h3 class="mt-4 text-xl font-semibold">Weekend Tickets</h3>
+          <p class="mt-2 text-sm text-muted">Get 20% off select concerts in Austin and Nashville.</p>
+          <button class="mt-5 w-full py-3 rounded-full btn-primary font-semibold">Grab Tickets</button>
         </div>
-        <div class="faq-item surface border border-app rounded-3xl p-5">
-          <button class="faq-question w-full flex justify-between items-center text-left">
-            <span>Are providers verified?</span>
-            <span>+</span>
-          </button>
-          <div class="faq-answer hidden mt-3 text-sm text-muted">All providers pass background checks and quality scoring.</div>
+        <div class="surface border border-app rounded-3xl p-6 card">
+          <div class="flex items-center justify-between">
+            <span class="text-xs px-3 py-1 rounded-full surface-2 border border-app">Marketplace</span>
+            <span class="text-xs text-muted">New</span>
+          </div>
+          <h3 class="mt-4 text-xl font-semibold">Seller Fee Waiver</h3>
+          <p class="mt-2 text-sm text-muted">List up to 10 items with zero service fees this week.</p>
+          <button class="mt-5 w-full py-3 rounded-full btn-primary font-semibold">Start Selling</button>
         </div>
-        <div class="faq-item surface border border-app rounded-3xl p-5">
-          <button class="faq-question w-full flex justify-between items-center text-left">
-            <span>How do subscriptions renew?</span>
-            <span>+</span>
-          </button>
-          <div class="faq-answer hidden mt-3 text-sm text-muted">Manage renewals in your dashboard with reminders and auto-pay options.</div>
-        </div>
-        <div class="faq-item surface border border-app rounded-3xl p-5">
-          <button class="faq-question w-full flex justify-between items-center text-left">
-            <span>Do you offer business onboarding?</span>
-            <span>+</span>
-          </button>
-          <div class="faq-answer hidden mt-3 text-sm text-muted">Yes, our team helps with setup, integrations, and training.</div>
+        <div class="surface border border-app rounded-3xl p-6 card">
+          <div class="flex items-center justify-between">
+            <span class="text-xs px-3 py-1 rounded-full surface-2 border border-app">Utilities</span>
+            <span class="text-xs text-muted">Ends in 1d</span>
+          </div>
+          <h3 class="mt-4 text-xl font-semibold">Recharge Cashback</h3>
+          <p class="mt-2 text-sm text-muted">Get $5 back on mobile top-ups over $25.</p>
+          <button class="mt-5 w-full py-3 rounded-full btn-primary font-semibold">Redeem Cashback</button>
         </div>
       </div>
     </div>
@@ -949,18 +953,6 @@
       });
     });
 
-    document.querySelectorAll('.faq-question').forEach((btn) => {
-      btn.addEventListener('click', () => {
-        const answer = btn.parentElement.querySelector('.faq-answer');
-        const open = !answer.classList.contains('hidden');
-        document.querySelectorAll('.faq-answer').forEach((el) => el.classList.add('hidden'));
-        document.querySelectorAll('.faq-question span:last-child').forEach((el) => (el.textContent = '+'));
-        if (!open) {
-          answer.classList.remove('hidden');
-          btn.querySelector('span:last-child').textContent = '-';
-        }
-      });
-    });
   </script>
 </body>
 </html>

@@ -520,50 +520,131 @@
 
   <!-- Feature Bands -->
   <section class="py-16 bg-app">
-    <div class="max-w-7xl mx-auto px-6 space-y-16">
-      <div class="grid lg:grid-cols-2 gap-10 items-center">
+    <div class="max-w-7xl mx-auto px-6 space-y-14">
+      <div class="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-6">
         <div>
-          <h3 class="text-2xl font-semibold">Delivery Suite</h3>
-          <p class="mt-3 text-muted">Groceries and food delivered fast with live ETA and verified stores.</p>
-          <ul class="mt-5 space-y-2 text-sm text-muted">
-            <li>- Nearby store fulfillment</li>
-            <li>- Freshness guarantees</li>
-            <li>- Scheduled deliveries</li>
-          </ul>
+          <h2 class="text-3xl font-semibold">Curated Suites</h2>
+          <p class="mt-3 text-muted max-w-xl">Professionally packaged experiences that combine top services with premium support.</p>
+        </div>
+        <div class="flex gap-3 text-xs text-muted">
+          <div class="px-3 py-2 rounded-full surface border border-app">Nationwide Coverage</div>
+          <div class="px-3 py-2 rounded-full surface border border-app">Priority Support</div>
+        </div>
+      </div>
+
+      <div class="surface border border-app rounded-3xl p-8 lg:p-10 grid lg:grid-cols-[1.05fr_0.95fr] gap-10 items-center">
+        <div>
+          <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full surface-2 border border-app text-xs text-muted">Delivery Suite</div>
+          <h3 class="mt-4 text-2xl font-semibold">Fresh essentials, on your schedule.</h3>
+          <p class="mt-3 text-muted">Groceries and food delivered fast with live ETA, smart substitutions, and verified stores.</p>
+          <div class="mt-6 grid sm:grid-cols-2 gap-4 text-sm text-muted">
+            <div class="flex items-start gap-3">
+              <span class="w-10 h-10 rounded-2xl bg-[var(--primary)] text-white flex items-center justify-center">24/7</span>
+              <div>
+                <h4 class="font-semibold text-app">Always-on delivery</h4>
+                <p class="mt-1">Late-night and early-morning slots in major cities.</p>
+              </div>
+            </div>
+            <div class="flex items-start gap-3">
+              <span class="w-10 h-10 rounded-2xl bg-[var(--primary)] text-white flex items-center justify-center">15m</span>
+              <div>
+                <h4 class="font-semibold text-app">Fast fulfillment</h4>
+                <p class="mt-1">Express options with real-time courier tracking.</p>
+              </div>
+            </div>
+          </div>
+          <div class="mt-6 flex flex-wrap gap-2 text-xs text-muted">
+            <span class="px-3 py-1 rounded-full surface-2 border border-app">Grocery</span>
+            <span class="px-3 py-1 rounded-full surface-2 border border-app">Food Delivery</span>
+            <span class="px-3 py-1 rounded-full surface-2 border border-app">On-demand help</span>
+          </div>
         </div>
         <div class="relative">
           <img class="w-full h-80 object-cover rounded-3xl" src="https://images.unsplash.com/photo-1481931098730-318b6f776db0?auto=format&fit=crop&w=1200&q=80" alt="Food delivery" loading="lazy" />
-          <div class="absolute inset-0 rounded-3xl bg-gradient-to-tr from-black/40 via-transparent to-transparent"></div>
+          <div class="absolute inset-0 rounded-3xl bg-gradient-to-tr from-black/50 via-transparent to-transparent"></div>
+          <div class="absolute bottom-4 left-4 right-4 surface border border-app rounded-2xl p-4 text-sm">
+            <div class="flex items-center justify-between">
+              <span class="text-muted">Average ETA</span>
+              <span class="font-semibold text-app">23 min</span>
+            </div>
+            <div class="mt-2 h-2 rounded-full surface-2 overflow-hidden">
+              <div class="h-full w-3/4 bg-[var(--primary)]"></div>
+            </div>
+          </div>
         </div>
       </div>
-      <div class="grid lg:grid-cols-2 gap-10 items-center">
+
+      <div class="surface border border-app rounded-3xl p-8 lg:p-10 grid lg:grid-cols-[0.95fr_1.05fr] gap-10 items-center">
         <div class="order-2 lg:order-1 relative">
           <img class="w-full h-80 object-cover rounded-3xl" src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=1200&q=80" alt="Travel planning" loading="lazy" />
-          <div class="absolute inset-0 rounded-3xl bg-gradient-to-tr from-black/40 via-transparent to-transparent"></div>
+          <div class="absolute inset-0 rounded-3xl bg-gradient-to-tr from-black/50 via-transparent to-transparent"></div>
+          <div class="absolute top-4 left-4 surface border border-app rounded-2xl px-4 py-3 text-sm">
+            <div class="text-muted">Bundle savings</div>
+            <div class="text-lg font-semibold text-app">Up to 18%</div>
+          </div>
         </div>
         <div class="order-1 lg:order-2">
-          <h3 class="text-2xl font-semibold">Travel Suite</h3>
-          <p class="mt-3 text-muted">Compare flights, hotels, and attractions with transparent pricing.</p>
-          <ul class="mt-5 space-y-2 text-sm text-muted">
-            <li>- Bundled savings and itineraries</li>
-            <li>- Secure bookings in minutes</li>
-            <li>- Multi-city planning</li>
-          </ul>
+          <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full surface-2 border border-app text-xs text-muted">Travel Suite</div>
+          <h3 class="mt-4 text-2xl font-semibold">Plan the full journey in one flow.</h3>
+          <p class="mt-3 text-muted">Compare flights, hotels, tours, and attractions with transparent pricing and flexible policies.</p>
+          <div class="mt-6 grid sm:grid-cols-2 gap-4 text-sm text-muted">
+            <div class="flex items-start gap-3">
+              <span class="w-10 h-10 rounded-2xl bg-[var(--primary)] text-white flex items-center justify-center">1x</span>
+              <div>
+                <h4 class="font-semibold text-app">Single checkout</h4>
+                <p class="mt-1">Book flights and stays together with shared itineraries.</p>
+              </div>
+            </div>
+            <div class="flex items-start gap-3">
+              <span class="w-10 h-10 rounded-2xl bg-[var(--primary)] text-white flex items-center justify-center">FLEX</span>
+              <div>
+                <h4 class="font-semibold text-app">Flexible changes</h4>
+                <p class="mt-1">Reschedule with low fees and clear cancellation policies.</p>
+              </div>
+            </div>
+          </div>
+          <div class="mt-6 flex flex-wrap gap-2 text-xs text-muted">
+            <span class="px-3 py-1 rounded-full surface-2 border border-app">Flight Booking</span>
+            <span class="px-3 py-1 rounded-full surface-2 border border-app">Hotel Booking</span>
+            <span class="px-3 py-1 rounded-full surface-2 border border-app">Tours & Attractions</span>
+          </div>
         </div>
       </div>
-      <div class="grid lg:grid-cols-2 gap-10 items-center">
+
+      <div class="surface border border-app rounded-3xl p-8 lg:p-10 grid lg:grid-cols-[1.05fr_0.95fr] gap-10 items-center">
         <div>
-          <h3 class="text-2xl font-semibold">Business Suite</h3>
-          <p class="mt-3 text-muted">Scale operations with AI tools, marketing automation, and secure meetings.</p>
-          <ul class="mt-5 space-y-2 text-sm text-muted">
-            <li>- AI-powered content workflows</li>
-            <li>- WhatsApp campaign management</li>
-            <li>- Encrypted meeting rooms</li>
-          </ul>
+          <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full surface-2 border border-app text-xs text-muted">Business Suite</div>
+          <h3 class="mt-4 text-2xl font-semibold">Operate smarter with AI and automation.</h3>
+          <p class="mt-3 text-muted">AI generation, WhatsApp campaigns, and secure meetings managed from one control center.</p>
+          <div class="mt-6 grid sm:grid-cols-2 gap-4 text-sm text-muted">
+            <div class="flex items-start gap-3">
+              <span class="w-10 h-10 rounded-2xl bg-[var(--primary)] text-white flex items-center justify-center">AI</span>
+              <div>
+                <h4 class="font-semibold text-app">Content at scale</h4>
+                <p class="mt-1">Generate copy, creatives, and automation workflows instantly.</p>
+              </div>
+            </div>
+            <div class="flex items-start gap-3">
+              <span class="w-10 h-10 rounded-2xl bg-[var(--primary)] text-white flex items-center justify-center">LIVE</span>
+              <div>
+                <h4 class="font-semibold text-app">Secure meetings</h4>
+                <p class="mt-1">Encrypted rooms with scheduling and transcripts.</p>
+              </div>
+            </div>
+          </div>
+          <div class="mt-6 flex flex-wrap gap-2 text-xs text-muted">
+            <span class="px-3 py-1 rounded-full surface-2 border border-app">AI Generation</span>
+            <span class="px-3 py-1 rounded-full surface-2 border border-app">WhatsApp Marketing</span>
+            <span class="px-3 py-1 rounded-full surface-2 border border-app">Online Meetings</span>
+          </div>
         </div>
         <div class="relative">
           <img class="w-full h-80 object-cover rounded-3xl" src="https://images.unsplash.com/photo-1551434678-e076c223a692?auto=format&fit=crop&w=1200&q=80" alt="Business tools" loading="lazy" />
-          <div class="absolute inset-0 rounded-3xl bg-gradient-to-tr from-black/40 via-transparent to-transparent"></div>
+          <div class="absolute inset-0 rounded-3xl bg-gradient-to-tr from-black/50 via-transparent to-transparent"></div>
+          <div class="absolute bottom-4 left-4 surface border border-app rounded-2xl px-4 py-3 text-sm">
+            <div class="text-muted">Campaign uplift</div>
+            <div class="text-lg font-semibold text-app">2.4x ROI</div>
+          </div>
         </div>
       </div>
     </div>

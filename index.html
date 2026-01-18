@@ -184,21 +184,36 @@
   <!-- Search -->
   <section class="py-12 bg-app">
     <div class="max-w-6xl mx-auto px-6">
-      <div class="surface border border-app rounded-3xl p-6 glow">
-        <form id="searchForm" class="grid md:grid-cols-[1fr_auto_auto] gap-4 items-center">
-          <input id="searchInput" type="text" class="w-full px-5 py-4 rounded-2xl surface-2 border border-app focus:outline-none focus:ring-2 focus:ring-[var(--primary)]" placeholder="Search flights..." />
-          <select id="categoryFilter" class="px-4 py-4 rounded-2xl surface-2 border border-app focus:outline-none focus:ring-2 focus:ring-[var(--primary)]">
-            <option value="all">All</option>
-            <option value="Travel">Travel</option>
-            <option value="Delivery">Delivery</option>
-            <option value="Services">Services</option>
-            <option value="Business">Business</option>
-            <option value="Utilities">Utilities</option>
-            <option value="Marketplace">Marketplace</option>
-          </select>
-          <button class="px-6 py-4 rounded-2xl btn-primary font-semibold">Search</button>
-        </form>
-        <div id="searchHint" class="mt-4 text-sm text-muted">Try: flights, hotel deals, home services, grocery delivery, AI content</div>
+      <div class="surface border border-app rounded-[28px] p-2 glow">
+        <div class="surface-2 border border-app rounded-[24px] px-5 py-4">
+          <div class="flex items-center justify-between gap-4 flex-wrap">
+            <div>
+              <div class="text-xs uppercase tracking-[0.2em] text-muted">Universal Search</div>
+              <div class="mt-2 text-xl font-semibold">Find services across every category</div>
+            </div>
+            <div class="flex items-center gap-2 text-xs text-muted">
+              <span class="px-3 py-1 rounded-full surface border border-app">Secure payments</span>
+              <span class="px-3 py-1 rounded-full surface border border-app">Verified providers</span>
+            </div>
+          </div>
+          <form id="searchForm" class="mt-6 grid lg:grid-cols-[1fr_auto_auto] gap-4 items-center">
+            <div class="flex items-center gap-3 surface border border-app rounded-2xl px-4 py-3">
+              <span class="text-muted text-sm">Search</span>
+              <input id="searchInput" type="text" class="w-full bg-transparent text-app placeholder:text-muted focus:outline-none" placeholder="Search flights..." />
+            </div>
+            <select id="categoryFilter" class="px-4 py-3 rounded-2xl surface border border-app focus:outline-none focus:ring-2 focus:ring-[var(--primary)]">
+              <option value="all">All</option>
+              <option value="Travel">Travel</option>
+              <option value="Delivery">Delivery</option>
+              <option value="Services">Services</option>
+              <option value="Business">Business</option>
+              <option value="Utilities">Utilities</option>
+              <option value="Marketplace">Marketplace</option>
+            </select>
+            <button class="px-7 py-3 rounded-2xl btn-primary font-semibold">Search</button>
+          </form>
+          <div id="searchHint" class="mt-4 text-sm text-muted">Try: flights, hotel deals, home services, grocery delivery, AI content</div>
+        </div>
       </div>
     </div>
   </section>

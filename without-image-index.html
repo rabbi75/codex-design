@@ -1,0 +1,842 @@
+﻿
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>UniServe - All-in-one Services</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            display: ['"Space Grotesk"', 'sans-serif'],
+            body: ['"Plus Jakarta Sans"', 'sans-serif'],
+          },
+          colors: {
+            primary: {
+              500: '#3b82f6',
+              600: '#2563eb',
+              700: '#1d4ed8',
+            },
+          },
+          boxShadow: {
+            glow: '0 20px 60px -25px rgba(37, 99, 235, 0.6)',
+          },
+        },
+      },
+    };
+  </script>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap');
+    html { scroll-behavior: smooth; }
+  </style>
+</head>
+<body class="bg-slate-950 text-slate-100 font-body bg-[radial-gradient(circle_at_top,_rgba(59,130,246,0.12),_transparent_45%),radial-gradient(circle_at_bottom,_rgba(14,165,233,0.08),_transparent_45%)]">
+  <!-- Navbar -->
+  <header id="navbar" class="fixed top-0 left-0 right-0 z-50 transition-all duration-300">
+    <nav class="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
+      <div class="flex items-center gap-3">
+        <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-blue-500 to-cyan-400 flex items-center justify-center font-display text-lg">U</div>
+        <span class="font-display text-xl tracking-tight">UniServe</span>
+      </div>
+      <div class="hidden lg:flex items-center gap-8 text-sm text-slate-200">
+        <a class="hover:text-white transition" href="#services">Services</a>
+        <a class="hover:text-white transition" href="#how">How it works</a>
+        <a class="hover:text-white transition" href="#pricing">Pricing</a>
+        <a class="hover:text-white transition" href="#reviews">Reviews</a>
+        <a class="hover:text-white transition" href="#faq">FAQ</a>
+      </div>
+      <div class="hidden lg:flex items-center gap-3">
+        <button class="px-4 py-2 text-sm rounded-full border border-white/20 hover:border-white/50 transition focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500">Sign in</button>
+        <button class="px-5 py-2 text-sm rounded-full bg-white text-slate-900 font-semibold hover:bg-slate-100 transition focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500">Get Started</button>
+      </div>
+      <button id="mobileMenuBtn" class="lg:hidden w-10 h-10 rounded-full border border-white/20 flex items-center justify-center">Menu</button>
+    </nav>
+    <div id="mobileMenu" class="lg:hidden hidden bg-slate-900/95 border-t border-white/10">
+      <div class="px-6 py-4 flex flex-col gap-4 text-sm">
+        <a href="#services">Services</a>
+        <a href="#how">How it works</a>
+        <a href="#pricing">Pricing</a>
+        <a href="#reviews">Reviews</a>
+        <a href="#faq">FAQ</a>
+        <div class="flex gap-3">
+          <button class="px-4 py-2 text-sm rounded-full border border-white/20">Sign in</button>
+          <button class="px-5 py-2 text-sm rounded-full bg-white text-slate-900 font-semibold">Get Started</button>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Hero -->
+  <section class="pt-28 pb-16 bg-gradient-to-b from-slate-950 via-slate-950 to-slate-900">
+    <div class="max-w-7xl mx-auto px-6 grid lg:grid-cols-2 gap-12 items-center">
+      <div>
+        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-blue-500/40 text-xs text-blue-200 bg-blue-500/10 mb-6">Live in USA</div>
+        <h1 class="font-display text-4xl sm:text-5xl lg:text-6xl leading-tight">Everything you need. One platform.</h1>
+        <p class="mt-5 text-lg text-slate-300 max-w-xl">USA-based all-in-one hub for travel, delivery, services, and marketing. Fast bookings, secure payments, and verified providers across major cities.</p>
+        <div class="mt-8 flex flex-wrap gap-4">
+          <button class="px-6 py-3 rounded-full bg-gradient-to-r from-blue-500 to-cyan-400 text-slate-900 font-semibold shadow-glow focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500">Start Free</button>
+          <a href="#services" class="px-6 py-3 rounded-full border border-white/20 hover:border-white/50 transition focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500">Explore Services</a>
+        </div>
+        <div class="mt-10 grid grid-cols-2 sm:grid-cols-4 gap-4 text-xs text-slate-300">
+          <div class="px-3 py-2 rounded-xl bg-white/5 border border-white/10">Secure Payments</div>
+          <div class="px-3 py-2 rounded-xl bg-white/5 border border-white/10">Verified Providers</div>
+          <div class="px-3 py-2 rounded-xl bg-white/5 border border-white/10">Fast Delivery</div>
+          <div class="px-3 py-2 rounded-xl bg-white/5 border border-white/10">24/7 Support</div>
+        </div>
+      </div>
+      <div class="relative">
+        <div class="absolute -top-8 -right-8 w-40 h-40 bg-blue-500/20 blur-3xl"></div>
+        <div class="grid gap-4">
+          <div class="grid grid-cols-2 gap-4">
+            <div class="p-4 rounded-2xl bg-white/5 border border-white/10 hover:border-blue-400/50 transition">
+              <div class="text-sm text-slate-300">Flight Deal</div>
+              <div class="mt-3 text-lg font-semibold">NYC to SFO</div>
+              <div class="mt-2 text-xs text-slate-400">$248 nonstop</div>
+            </div>
+            <div class="p-4 rounded-2xl bg-white/5 border border-white/10 hover:border-blue-400/50 transition">
+              <div class="text-sm text-slate-300">Event Ticket</div>
+              <div class="mt-3 text-lg font-semibold">Jazz Night</div>
+              <div class="mt-2 text-xs text-slate-400">Austin, tonight</div>
+            </div>
+          </div>
+          <div class="p-4 rounded-2xl bg-white/5 border border-white/10">
+            <div class="flex items-center justify-between">
+              <div>
+                <div class="text-sm text-slate-300">Nearby Providers</div>
+                <div class="mt-2 text-lg font-semibold">Service Map</div>
+              </div>
+              <div class="w-12 h-12 rounded-full bg-blue-500/20 flex items-center justify-center text-xs">MAP</div>
+            </div>
+            <div class="mt-4 grid grid-cols-3 gap-2">
+              <div class="h-16 rounded-xl bg-slate-900 border border-white/10 flex items-center justify-center text-xs">NYC</div>
+              <div class="h-16 rounded-xl bg-slate-900 border border-white/10 flex items-center justify-center text-xs">LA</div>
+              <div class="h-16 rounded-xl bg-slate-900 border border-white/10 flex items-center justify-center text-xs">Miami</div>
+            </div>
+          </div>
+          <div class="grid grid-cols-2 gap-4">
+            <div class="p-4 rounded-2xl bg-white/5 border border-white/10">
+              <div class="text-sm text-slate-300">Grocery Drop</div>
+              <div class="mt-3 text-lg font-semibold">15 min ETA</div>
+              <div class="mt-2 text-xs text-slate-400">Fresh and local</div>
+            </div>
+            <div class="p-4 rounded-2xl bg-white/5 border border-white/10">
+              <div class="text-sm text-slate-300">Meetings</div>
+              <div class="mt-3 text-lg font-semibold">Secure Room</div>
+              <div class="mt-2 text-xs text-slate-400">Encrypted calls</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Search -->
+  <section class="py-12 bg-slate-900">
+    <div class="max-w-6xl mx-auto px-6">
+      <div class="p-6 rounded-3xl bg-white/5 border border-white/10 shadow-lg">
+        <form id="searchForm" class="grid md:grid-cols-[1fr_auto_auto] gap-4 items-center">
+          <input id="searchInput" type="text" class="w-full px-5 py-4 rounded-2xl bg-slate-950 border border-white/10 focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="Search flights..." />
+          <select id="categoryFilter" class="px-4 py-4 rounded-2xl bg-slate-950 border border-white/10 focus:outline-none focus:ring-2 focus:ring-blue-500">
+            <option value="all">All</option>
+            <option value="Travel">Travel</option>
+            <option value="Delivery">Delivery</option>
+            <option value="Services">Services</option>
+            <option value="Marketing">Marketing</option>
+            <option value="Payments">Payments</option>
+            <option value="Marketplace">Marketplace</option>
+          </select>
+          <button class="px-6 py-4 rounded-2xl bg-gradient-to-r from-blue-500 to-cyan-400 text-slate-900 font-semibold focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500">Search</button>
+        </form>
+        <div id="searchHint" class="mt-4 text-sm text-slate-400">Try: flights, hotel deals, plumber, grocery delivery, AI content</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Services Grid -->
+  <section id="services" class="py-16 bg-slate-950">
+    <div class="max-w-7xl mx-auto px-6">
+      <div class="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-6">
+        <div>
+          <h2 class="font-display text-3xl">All-in-one Services</h2>
+          <p class="mt-3 text-slate-300 max-w-xl">Discover every service in one marketplace, from travel to marketing to daily essentials.</p>
+        </div>
+        <div class="flex flex-wrap gap-3" id="categoryChips">
+          <button data-filter="all" class="chip px-4 py-2 rounded-full border border-white/20 bg-white/10 transition">All</button>
+          <button data-filter="Travel" class="chip px-4 py-2 rounded-full border border-white/20 transition">Travel</button>
+          <button data-filter="Delivery" class="chip px-4 py-2 rounded-full border border-white/20 transition">Delivery</button>
+          <button data-filter="Services" class="chip px-4 py-2 rounded-full border border-white/20 transition">Services</button>
+          <button data-filter="Business" class="chip px-4 py-2 rounded-full border border-white/20 transition">Business</button>
+          <button data-filter="Marketing" class="chip px-4 py-2 rounded-full border border-white/20 transition">Marketing</button>
+          <button data-filter="Utilities" class="chip px-4 py-2 rounded-full border border-white/20 transition">Utilities</button>
+          <button data-filter="Marketplace" class="chip px-4 py-2 rounded-full border border-white/20 transition">Marketplace</button>
+        </div>
+      </div>
+
+      <div id="servicesGrid" class="mt-10 grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div class="service-card group p-6 rounded-2xl bg-white/5 border border-white/10 hover:border-blue-400/60 hover:-translate-y-1 hover:shadow-xl hover:shadow-blue-500/10 transition-all" data-category="Business" data-title="AI Generation">
+          <div class="flex items-center justify-between">
+            <svg viewBox="0 0 40 40" class="w-10 h-10 transition-transform group-hover:-translate-y-1">
+              <rect x="2" y="2" width="36" height="36" rx="10" fill="rgba(59,130,246,0.3)" />
+              <text x="20" y="24" text-anchor="middle" font-size="12" fill="#e0f2fe" font-family="Plus Jakarta Sans, sans-serif">AI</text>
+            </svg>
+            <span class="text-xs px-3 py-1 rounded-full bg-blue-500/20 text-blue-200">Business</span>
+          </div>
+          <h3 class="mt-4 text-lg font-semibold">AI Generation</h3>
+          <p class="mt-2 text-sm text-slate-300">Smart content, images, and automation tools.</p>
+          <a class="mt-4 inline-block text-sm text-blue-300 group-hover:text-blue-200" href="#">Learn more -></a>
+        </div>
+        <div class="service-card group p-6 rounded-2xl bg-white/5 border border-white/10 hover:border-blue-400/60 hover:-translate-y-1 hover:shadow-xl hover:shadow-blue-500/10 transition-all" data-category="Delivery" data-title="Grocery">
+          <div class="flex items-center justify-between">
+            <svg viewBox="0 0 40 40" class="w-10 h-10 transition-transform group-hover:-translate-y-1">
+              <rect x="2" y="2" width="36" height="36" rx="10" fill="rgba(59,130,246,0.3)" />
+              <text x="20" y="24" text-anchor="middle" font-size="12" fill="#e0f2fe" font-family="Plus Jakarta Sans, sans-serif">GR</text>
+            </svg>
+            <span class="text-xs px-3 py-1 rounded-full bg-blue-500/20 text-blue-200">Delivery</span>
+          </div>
+          <h3 class="mt-4 text-lg font-semibold">Grocery</h3>
+          <p class="mt-2 text-sm text-slate-300">Nearby stores with fast delivery.</p>
+          <a class="mt-4 inline-block text-sm text-blue-300 group-hover:text-blue-200" href="#">Learn more -></a>
+        </div>
+        <div class="service-card group p-6 rounded-2xl bg-white/5 border border-white/10 hover:border-blue-400/60 hover:-translate-y-1 hover:shadow-xl hover:shadow-blue-500/10 transition-all" data-category="Delivery" data-title="Food Delivery">
+          <div class="flex items-center justify-between">
+            <svg viewBox="0 0 40 40" class="w-10 h-10 transition-transform group-hover:-translate-y-1">
+              <rect x="2" y="2" width="36" height="36" rx="10" fill="rgba(59,130,246,0.3)" />
+              <text x="20" y="24" text-anchor="middle" font-size="12" fill="#e0f2fe" font-family="Plus Jakarta Sans, sans-serif">FD</text>
+            </svg>
+            <span class="text-xs px-3 py-1 rounded-full bg-blue-500/20 text-blue-200">Delivery</span>
+          </div>
+          <h3 class="mt-4 text-lg font-semibold">Food Delivery</h3>
+          <p class="mt-2 text-sm text-slate-300">Local restaurants at your door.</p>
+          <a class="mt-4 inline-block text-sm text-blue-300 group-hover:text-blue-200" href="#">Learn more -></a>
+        </div>
+        <div class="service-card group p-6 rounded-2xl bg-white/5 border border-white/10 hover:border-blue-400/60 hover:-translate-y-1 hover:shadow-xl hover:shadow-blue-500/10 transition-all" data-category="Services" data-title="On-Demand Services">
+          <div class="flex items-center justify-between">
+            <svg viewBox="0 0 40 40" class="w-10 h-10 transition-transform group-hover:-translate-y-1">
+              <rect x="2" y="2" width="36" height="36" rx="10" fill="rgba(59,130,246,0.3)" />
+              <text x="20" y="24" text-anchor="middle" font-size="12" fill="#e0f2fe" font-family="Plus Jakarta Sans, sans-serif">OD</text>
+            </svg>
+            <span class="text-xs px-3 py-1 rounded-full bg-blue-500/20 text-blue-200">Services</span>
+          </div>
+          <h3 class="mt-4 text-lg font-semibold">On-Demand Services</h3>
+          <p class="mt-2 text-sm text-slate-300">Book essential services instantly.</p>
+          <a class="mt-4 inline-block text-sm text-blue-300 group-hover:text-blue-200" href="#">Learn more -></a>
+        </div>
+        <div class="service-card group p-6 rounded-2xl bg-white/5 border border-white/10 hover:border-blue-400/60 hover:-translate-y-1 hover:shadow-xl hover:shadow-blue-500/10 transition-all" data-category="Travel" data-title="Flight Booking">
+          <div class="flex items-center justify-between">
+            <svg viewBox="0 0 40 40" class="w-10 h-10 transition-transform group-hover:-translate-y-1">
+              <rect x="2" y="2" width="36" height="36" rx="10" fill="rgba(59,130,246,0.3)" />
+              <text x="20" y="24" text-anchor="middle" font-size="12" fill="#e0f2fe" font-family="Plus Jakarta Sans, sans-serif">FL</text>
+            </svg>
+            <span class="text-xs px-3 py-1 rounded-full bg-blue-500/20 text-blue-200">Travel</span>
+          </div>
+          <h3 class="mt-4 text-lg font-semibold">Flight Booking</h3>
+          <p class="mt-2 text-sm text-slate-300">Best fares, flexible schedules.</p>
+          <a class="mt-4 inline-block text-sm text-blue-300 group-hover:text-blue-200" href="#">Learn more -></a>
+        </div>
+        <div class="service-card group p-6 rounded-2xl bg-white/5 border border-white/10 hover:border-blue-400/60 hover:-translate-y-1 hover:shadow-xl hover:shadow-blue-500/10 transition-all" data-category="Travel" data-title="Hotel Booking">
+          <div class="flex items-center justify-between">
+            <svg viewBox="0 0 40 40" class="w-10 h-10 transition-transform group-hover:-translate-y-1">
+              <rect x="2" y="2" width="36" height="36" rx="10" fill="rgba(59,130,246,0.3)" />
+              <text x="20" y="24" text-anchor="middle" font-size="12" fill="#e0f2fe" font-family="Plus Jakarta Sans, sans-serif">HT</text>
+            </svg>
+            <span class="text-xs px-3 py-1 rounded-full bg-blue-500/20 text-blue-200">Travel</span>
+          </div>
+          <h3 class="mt-4 text-lg font-semibold">Hotel Booking</h3>
+          <p class="mt-2 text-sm text-slate-300">Top stays with verified reviews.</p>
+          <a class="mt-4 inline-block text-sm text-blue-300 group-hover:text-blue-200" href="#">Learn more -></a>
+        </div>
+        <div class="service-card group p-6 rounded-2xl bg-white/5 border border-white/10 hover:border-blue-400/60 hover:-translate-y-1 hover:shadow-xl hover:shadow-blue-500/10 transition-all" data-category="Travel" data-title="Tour Planning">
+          <div class="flex items-center justify-between">
+            <svg viewBox="0 0 40 40" class="w-10 h-10 transition-transform group-hover:-translate-y-1">
+              <rect x="2" y="2" width="36" height="36" rx="10" fill="rgba(59,130,246,0.3)" />
+              <text x="20" y="24" text-anchor="middle" font-size="12" fill="#e0f2fe" font-family="Plus Jakarta Sans, sans-serif">TR</text>
+            </svg>
+            <span class="text-xs px-3 py-1 rounded-full bg-blue-500/20 text-blue-200">Travel</span>
+          </div>
+          <h3 class="mt-4 text-lg font-semibold">Tour Planning</h3>
+          <p class="mt-2 text-sm text-slate-300">Curated trips and local guides.</p>
+          <a class="mt-4 inline-block text-sm text-blue-300 group-hover:text-blue-200" href="#">Learn more -></a>
+        </div>
+        <div class="service-card group p-6 rounded-2xl bg-white/5 border border-white/10 hover:border-blue-400/60 hover:-translate-y-1 hover:shadow-xl hover:shadow-blue-500/10 transition-all" data-category="Travel" data-title="Events">
+          <div class="flex items-center justify-between">
+            <svg viewBox="0 0 40 40" class="w-10 h-10 transition-transform group-hover:-translate-y-1">
+              <rect x="2" y="2" width="36" height="36" rx="10" fill="rgba(59,130,246,0.3)" />
+              <text x="20" y="24" text-anchor="middle" font-size="12" fill="#e0f2fe" font-family="Plus Jakarta Sans, sans-serif">EV</text>
+            </svg>
+            <span class="text-xs px-3 py-1 rounded-full bg-blue-500/20 text-blue-200">Travel</span>
+          </div>
+          <h3 class="mt-4 text-lg font-semibold">Events</h3>
+          <p class="mt-2 text-sm text-slate-300">Tickets for concerts and shows.</p>
+          <a class="mt-4 inline-block text-sm text-blue-300 group-hover:text-blue-200" href="#">Learn more -></a>
+        </div>
+        <div class="service-card group p-6 rounded-2xl bg-white/5 border border-white/10 hover:border-blue-400/60 hover:-translate-y-1 hover:shadow-xl hover:shadow-blue-500/10 transition-all" data-category="Business" data-title="Online Meeting">
+          <div class="flex items-center justify-between">
+            <svg viewBox="0 0 40 40" class="w-10 h-10 transition-transform group-hover:-translate-y-1">
+              <rect x="2" y="2" width="36" height="36" rx="10" fill="rgba(59,130,246,0.3)" />
+              <text x="20" y="24" text-anchor="middle" font-size="12" fill="#e0f2fe" font-family="Plus Jakarta Sans, sans-serif">OM</text>
+            </svg>
+            <span class="text-xs px-3 py-1 rounded-full bg-blue-500/20 text-blue-200">Business</span>
+          </div>
+          <h3 class="mt-4 text-lg font-semibold">Online Meeting</h3>
+          <p class="mt-2 text-sm text-slate-300">Secure virtual meetings at scale.</p>
+          <a class="mt-4 inline-block text-sm text-blue-300 group-hover:text-blue-200" href="#">Learn more -></a>
+        </div>
+        <div class="service-card group p-6 rounded-2xl bg-white/5 border border-white/10 hover:border-blue-400/60 hover:-translate-y-1 hover:shadow-xl hover:shadow-blue-500/10 transition-all" data-category="Travel" data-title="Travel & Hospitality">
+          <div class="flex items-center justify-between">
+            <svg viewBox="0 0 40 40" class="w-10 h-10 transition-transform group-hover:-translate-y-1">
+              <rect x="2" y="2" width="36" height="36" rx="10" fill="rgba(59,130,246,0.3)" />
+              <text x="20" y="24" text-anchor="middle" font-size="12" fill="#e0f2fe" font-family="Plus Jakarta Sans, sans-serif">TH</text>
+            </svg>
+            <span class="text-xs px-3 py-1 rounded-full bg-blue-500/20 text-blue-200">Travel</span>
+          </div>
+          <h3 class="mt-4 text-lg font-semibold">Travel & Hospitality</h3>
+          <p class="mt-2 text-sm text-slate-300">Complete travel solutions.</p>
+          <a class="mt-4 inline-block text-sm text-blue-300 group-hover:text-blue-200" href="#">Learn more -></a>
+        </div>
+        <div class="service-card group p-6 rounded-2xl bg-white/5 border border-white/10 hover:border-blue-400/60 hover:-translate-y-1 hover:shadow-xl hover:shadow-blue-500/10 transition-all" data-category="Utilities" data-title="Mobile Recharge">
+          <div class="flex items-center justify-between">
+            <svg viewBox="0 0 40 40" class="w-10 h-10 transition-transform group-hover:-translate-y-1">
+              <rect x="2" y="2" width="36" height="36" rx="10" fill="rgba(59,130,246,0.3)" />
+              <text x="20" y="24" text-anchor="middle" font-size="12" fill="#e0f2fe" font-family="Plus Jakarta Sans, sans-serif">MR</text>
+            </svg>
+            <span class="text-xs px-3 py-1 rounded-full bg-blue-500/20 text-blue-200">Utilities</span>
+          </div>
+          <h3 class="mt-4 text-lg font-semibold">Mobile Recharge</h3>
+          <p class="mt-2 text-sm text-slate-300">Instant top-ups and plans.</p>
+          <a class="mt-4 inline-block text-sm text-blue-300 group-hover:text-blue-200" href="#">Learn more -></a>
+        </div>
+        <div class="service-card group p-6 rounded-2xl bg-white/5 border border-white/10 hover:border-blue-400/60 hover:-translate-y-1 hover:shadow-xl hover:shadow-blue-500/10 transition-all" data-category="Utilities" data-title="Subscriptions">
+          <div class="flex items-center justify-between">
+            <svg viewBox="0 0 40 40" class="w-10 h-10 transition-transform group-hover:-translate-y-1">
+              <rect x="2" y="2" width="36" height="36" rx="10" fill="rgba(59,130,246,0.3)" />
+              <text x="20" y="24" text-anchor="middle" font-size="12" fill="#e0f2fe" font-family="Plus Jakarta Sans, sans-serif">SB</text>
+            </svg>
+            <span class="text-xs px-3 py-1 rounded-full bg-blue-500/20 text-blue-200">Utilities</span>
+          </div>
+          <h3 class="mt-4 text-lg font-semibold">Subscriptions</h3>
+          <p class="mt-2 text-sm text-slate-300">Renew and manage subscriptions.</p>
+          <a class="mt-4 inline-block text-sm text-blue-300 group-hover:text-blue-200" href="#">Learn more -></a>
+        </div>
+        <div class="service-card group p-6 rounded-2xl bg-white/5 border border-white/10 hover:border-blue-400/60 hover:-translate-y-1 hover:shadow-xl hover:shadow-blue-500/10 transition-all" data-category="Marketing" data-title="WhatsApp Marketing">
+          <div class="flex items-center justify-between">
+            <svg viewBox="0 0 40 40" class="w-10 h-10 transition-transform group-hover:-translate-y-1">
+              <rect x="2" y="2" width="36" height="36" rx="10" fill="rgba(59,130,246,0.3)" />
+              <text x="20" y="24" text-anchor="middle" font-size="12" fill="#e0f2fe" font-family="Plus Jakarta Sans, sans-serif">WM</text>
+            </svg>
+            <span class="text-xs px-3 py-1 rounded-full bg-blue-500/20 text-blue-200">Marketing</span>
+          </div>
+          <h3 class="mt-4 text-lg font-semibold">WhatsApp Marketing</h3>
+          <p class="mt-2 text-sm text-slate-300">Targeted campaigns that convert.</p>
+          <a class="mt-4 inline-block text-sm text-blue-300 group-hover:text-blue-200" href="#">Learn more -></a>
+        </div>
+        <div class="service-card group p-6 rounded-2xl bg-white/5 border border-white/10 hover:border-blue-400/60 hover:-translate-y-1 hover:shadow-xl hover:shadow-blue-500/10 transition-all" data-category="Travel" data-title="Attraction Booking">
+          <div class="flex items-center justify-between">
+            <svg viewBox="0 0 40 40" class="w-10 h-10 transition-transform group-hover:-translate-y-1">
+              <rect x="2" y="2" width="36" height="36" rx="10" fill="rgba(59,130,246,0.3)" />
+              <text x="20" y="24" text-anchor="middle" font-size="12" fill="#e0f2fe" font-family="Plus Jakarta Sans, sans-serif">AT</text>
+            </svg>
+            <span class="text-xs px-3 py-1 rounded-full bg-blue-500/20 text-blue-200">Travel</span>
+          </div>
+          <h3 class="mt-4 text-lg font-semibold">Attraction Booking</h3>
+          <p class="mt-2 text-sm text-slate-300">Experiences and activities.</p>
+          <a class="mt-4 inline-block text-sm text-blue-300 group-hover:text-blue-200" href="#">Learn more -></a>
+        </div>
+        <div class="service-card group p-6 rounded-2xl bg-white/5 border border-white/10 hover:border-blue-400/60 hover:-translate-y-1 hover:shadow-xl hover:shadow-blue-500/10 transition-all" data-category="Marketplace" data-title="Marketplace">
+          <div class="flex items-center justify-between">
+            <svg viewBox="0 0 40 40" class="w-10 h-10 transition-transform group-hover:-translate-y-1">
+              <rect x="2" y="2" width="36" height="36" rx="10" fill="rgba(59,130,246,0.3)" />
+              <text x="20" y="24" text-anchor="middle" font-size="12" fill="#e0f2fe" font-family="Plus Jakarta Sans, sans-serif">MP</text>
+            </svg>
+            <span class="text-xs px-3 py-1 rounded-full bg-blue-500/20 text-blue-200">Marketplace</span>
+          </div>
+          <h3 class="mt-4 text-lg font-semibold">Marketplace</h3>
+          <p class="mt-2 text-sm text-slate-300">Buy and sell items securely.</p>
+          <a class="mt-4 inline-block text-sm text-blue-300 group-hover:text-blue-200" href="#">Learn more -></a>
+        </div>
+      </div>
+      <div id="searchResults" class="mt-8 hidden p-4 rounded-2xl bg-white/5 border border-white/10 text-sm text-slate-300"></div>
+    </div>
+  </section>
+
+  <!-- How it Works -->
+  <section id="how" class="py-16 bg-slate-900">
+    <div class="max-w-6xl mx-auto px-6">
+      <h2 class="font-display text-3xl">How it Works</h2>
+      <p class="mt-3 text-slate-300 max-w-xl">Search, book, and manage everything in one secure dashboard.</p>
+      <div class="mt-10 grid md:grid-cols-3 gap-6 relative">
+        <div class="p-6 rounded-2xl bg-white/5 border border-white/10">
+          <div class="w-10 h-10 rounded-xl bg-blue-500/20 flex items-center justify-center text-xs">SR</div>
+          <h3 class="mt-4 text-lg font-semibold">Search</h3>
+          <p class="mt-2 text-sm text-slate-300">Find services across categories with smart filters.</p>
+        </div>
+        <div class="p-6 rounded-2xl bg-white/5 border border-white/10">
+          <div class="w-10 h-10 rounded-xl bg-blue-500/20 flex items-center justify-center text-xs">BO</div>
+          <h3 class="mt-4 text-lg font-semibold">Book/Order</h3>
+          <p class="mt-2 text-sm text-slate-300">Instant checkout with secure payment options.</p>
+        </div>
+        <div class="p-6 rounded-2xl bg-white/5 border border-white/10">
+          <div class="w-10 h-10 rounded-xl bg-blue-500/20 flex items-center justify-center text-xs">TM</div>
+          <h3 class="mt-4 text-lg font-semibold">Track/Manage</h3>
+          <p class="mt-2 text-sm text-slate-300">Real-time tracking and unified management.</p>
+        </div>
+        <div class="absolute left-0 right-0 -bottom-3 h-1 bg-white/10 rounded-full overflow-hidden">
+          <div id="progressBar" class="h-full w-0 bg-gradient-to-r from-blue-500 to-cyan-400"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Highlights -->
+  <section class="py-16 bg-slate-950">
+    <div class="max-w-7xl mx-auto px-6 space-y-12">
+      <div class="grid lg:grid-cols-2 gap-10 items-center">
+        <div>
+          <h3 class="font-display text-2xl">Delivery Suite</h3>
+          <p class="mt-3 text-slate-300">Groceries and food delivered fast with live ETA and verified stores.</p>
+          <ul class="mt-5 space-y-2 text-sm text-slate-300">
+            <li>• Nearby store fulfillment</li>
+            <li>• Freshness guarantees</li>
+            <li>• Scheduled deliveries</li>
+          </ul>
+        </div>
+        <div class="grid grid-cols-2 gap-4">
+          <div class="p-4 rounded-2xl bg-white/5 border border-white/10">Grocery Orders</div>
+          <div class="p-4 rounded-2xl bg-white/5 border border-white/10">Food Delivery</div>
+          <div class="p-4 rounded-2xl bg-white/5 border border-white/10">15-30 min ETA</div>
+          <div class="p-4 rounded-2xl bg-white/5 border border-white/10">4.9 ratings</div>
+        </div>
+      </div>
+      <div class="grid lg:grid-cols-2 gap-10 items-center">
+        <div class="order-2 lg:order-1 grid grid-cols-2 gap-4">
+          <div class="p-4 rounded-2xl bg-white/5 border border-white/10">Flights</div>
+          <div class="p-4 rounded-2xl bg-white/5 border border-white/10">Hotels</div>
+          <div class="p-4 rounded-2xl bg-white/5 border border-white/10">Tours</div>
+          <div class="p-4 rounded-2xl bg-white/5 border border-white/10">Attractions</div>
+        </div>
+        <div class="order-1 lg:order-2">
+          <h3 class="font-display text-2xl">Travel Suite</h3>
+          <p class="mt-3 text-slate-300">Compare flights, hotels, and experiences with transparent pricing.</p>
+          <ul class="mt-5 space-y-2 text-sm text-slate-300">
+            <li>• Bundled savings and itineraries</li>
+            <li>• Secure bookings in minutes</li>
+            <li>• Multi-city planning</li>
+          </ul>
+        </div>
+      </div>
+      <div class="grid lg:grid-cols-2 gap-10 items-center">
+        <div>
+          <h3 class="font-display text-2xl">Business Suite</h3>
+          <p class="mt-3 text-slate-300">Scale operations with AI generation, marketing automation, and secure meetings.</p>
+          <ul class="mt-5 space-y-2 text-sm text-slate-300">
+            <li>• AI-powered content workflows</li>
+            <li>• WhatsApp campaign management</li>
+            <li>• Encrypted meeting rooms</li>
+          </ul>
+        </div>
+        <div class="grid grid-cols-2 gap-4">
+          <div class="p-4 rounded-2xl bg-white/5 border border-white/10">AI Studio</div>
+          <div class="p-4 rounded-2xl bg-white/5 border border-white/10">WhatsApp Marketing</div>
+          <div class="p-4 rounded-2xl bg-white/5 border border-white/10">Online Meeting</div>
+          <div class="p-4 rounded-2xl bg-white/5 border border-white/10">Analytics</div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- Social Proof -->
+  <section id="reviews" class="py-16 bg-slate-900">
+    <div class="max-w-7xl mx-auto px-6">
+      <div class="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-6">
+        <div>
+          <h2 class="font-display text-3xl">Trusted Nationwide</h2>
+          <p class="mt-3 text-slate-300">4.8/5 average rating from 120k+ customers.</p>
+        </div>
+        <div class="flex gap-3 text-xs text-slate-300">
+          <div class="px-3 py-2 rounded-full bg-white/10">NYC</div>
+          <div class="px-3 py-2 rounded-full bg-white/10">LA</div>
+          <div class="px-3 py-2 rounded-full bg-white/10">Chicago</div>
+          <div class="px-3 py-2 rounded-full bg-white/10">Austin</div>
+          <div class="px-3 py-2 rounded-full bg-white/10">Miami</div>
+        </div>
+      </div>
+      <div class="mt-8 grid grid-cols-2 md:grid-cols-5 gap-4 text-xs text-slate-400">
+        <div class="px-4 py-3 rounded-xl bg-white/5 border border-white/10">UrbanMart</div>
+        <div class="px-4 py-3 rounded-xl bg-white/5 border border-white/10">Skyline Air</div>
+        <div class="px-4 py-3 rounded-xl bg-white/5 border border-white/10">MetroStay</div>
+        <div class="px-4 py-3 rounded-xl bg-white/5 border border-white/10">EventHive</div>
+        <div class="px-4 py-3 rounded-xl bg-white/5 border border-white/10">QuickServe</div>
+      </div>
+      <div class="mt-10">
+        <div class="overflow-hidden">
+          <div id="testimonialTrack" class="flex gap-6 transition-transform duration-500">
+            <div class="testimonial-card min-w-[280px] md:min-w-[360px] p-6 rounded-2xl bg-white/5 border border-white/10">
+              <p class="text-sm text-slate-300">"Flights and hotels in one go. Booked a full trip in 6 minutes."</p>
+              <div class="mt-4 text-sm font-semibold">Maya L. - NYC</div>
+            </div>
+            <div class="testimonial-card min-w-[280px] md:min-w-[360px] p-6 rounded-2xl bg-white/5 border border-white/10">
+              <p class="text-sm text-slate-300">"Grocery delivery is always on time and support is quick."</p>
+              <div class="mt-4 text-sm font-semibold">Samir K. - Chicago</div>
+            </div>
+            <div class="testimonial-card min-w-[280px] md:min-w-[360px] p-6 rounded-2xl bg-white/5 border border-white/10">
+              <p class="text-sm text-slate-300">"WhatsApp marketing doubled our event turnout."</p>
+              <div class="mt-4 text-sm font-semibold">Renee P. - Austin</div>
+            </div>
+            <div class="testimonial-card min-w-[280px] md:min-w-[360px] p-6 rounded-2xl bg-white/5 border border-white/10">
+              <p class="text-sm text-slate-300">"The AI tools saved hours of content work."</p>
+              <div class="mt-4 text-sm font-semibold">Carlos M. - LA</div>
+            </div>
+            <div class="testimonial-card min-w-[280px] md:min-w-[360px] p-6 rounded-2xl bg-white/5 border border-white/10">
+              <p class="text-sm text-slate-300">"Event tickets with transparent fees. Smooth checkout."</p>
+              <div class="mt-4 text-sm font-semibold">Jenna R. - Miami</div>
+            </div>
+            <div class="testimonial-card min-w-[280px] md:min-w-[360px] p-6 rounded-2xl bg-white/5 border border-white/10">
+              <p class="text-sm text-slate-300">"We manage subscriptions and meetings all in one place."</p>
+              <div class="mt-4 text-sm font-semibold">Oliver T. - NYC</div>
+            </div>
+          </div>
+        </div>
+        <div class="mt-6 flex justify-center gap-3">
+          <button id="prevTestimonial" class="px-4 py-2 rounded-full border border-white/20">Prev</button>
+          <button id="nextTestimonial" class="px-4 py-2 rounded-full border border-white/20">Next</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Pricing -->
+  <section id="pricing" class="py-16 bg-slate-950">
+    <div class="max-w-6xl mx-auto px-6">
+      <div class="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-6">
+        <div>
+          <h2 class="font-display text-3xl">Pricing</h2>
+          <p class="mt-3 text-slate-300">Flexible plans for individuals and growing teams.</p>
+        </div>
+        <div class="flex items-center gap-3 text-sm">
+          <span>Monthly</span>
+          <button id="priceToggle" class="relative w-14 h-7 rounded-full bg-white/20">
+            <span id="toggleDot" class="absolute top-1 left-1 w-5 h-5 rounded-full bg-white transition-all"></span>
+          </button>
+          <span>Yearly <span class="text-blue-300">(Save 20%)</span></span>
+        </div>
+      </div>
+      <div class="mt-10 grid md:grid-cols-3 gap-6">
+        <div class="p-6 rounded-2xl bg-white/5 border border-white/10">
+          <h3 class="text-xl font-semibold">Starter</h3>
+          <p class="mt-2 text-sm text-slate-300">Essential services for individuals.</p>
+          <div class="mt-6 text-4xl font-display transition-all" data-price="19">$19</div>
+          <div class="text-xs text-slate-400">per month</div>
+          <ul class="mt-6 space-y-2 text-sm text-slate-300">
+            <li>• Delivery and marketplace access</li>
+            <li>• Basic travel bookings</li>
+            <li>• Standard support</li>
+          </ul>
+          <button class="mt-6 w-full py-3 rounded-full border border-white/20">Choose Starter</button>
+        </div>
+        <div class="p-6 rounded-2xl bg-gradient-to-b from-blue-500/20 to-slate-900 border border-blue-400/60 shadow-glow relative">
+          <div class="absolute -top-3 right-4 px-3 py-1 rounded-full bg-blue-500 text-xs text-slate-900 font-semibold">Most Popular</div>
+          <h3 class="text-xl font-semibold">Pro</h3>
+          <p class="mt-2 text-sm text-slate-200">For power users and freelancers.</p>
+          <div class="mt-6 text-4xl font-display transition-all" data-price="49">$49</div>
+          <div class="text-xs text-slate-200">per month</div>
+          <ul class="mt-6 space-y-2 text-sm text-slate-200">
+            <li>• Includes WhatsApp Marketing</li>
+            <li>• AI Generation tools</li>
+            <li>• Priority travel support</li>
+          </ul>
+          <button class="mt-6 w-full py-3 rounded-full bg-white text-slate-900 font-semibold">Choose Pro</button>
+        </div>
+        <div class="p-6 rounded-2xl bg-white/5 border border-white/10">
+          <h3 class="text-xl font-semibold">Business</h3>
+          <p class="mt-2 text-sm text-slate-300">For teams and multi-location ops.</p>
+          <div class="mt-6 text-4xl font-display transition-all" data-price="89">$89</div>
+          <div class="text-xs text-slate-400">per month</div>
+          <ul class="mt-6 space-y-2 text-sm text-slate-300">
+            <li>• WhatsApp Marketing plus AI Studio</li>
+            <li>• Advanced analytics</li>
+            <li>• Dedicated success manager</li>
+          </ul>
+          <button class="mt-6 w-full py-3 rounded-full border border-white/20">Choose Business</button>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- FAQ -->
+  <section id="faq" class="py-16 bg-slate-900">
+    <div class="max-w-5xl mx-auto px-6">
+      <h2 class="font-display text-3xl">FAQ</h2>
+      <div class="mt-8 space-y-4">
+        <div class="faq-item p-5 rounded-2xl bg-white/5 border border-white/10">
+          <button class="faq-question w-full flex justify-between items-center text-left">
+            <span>Is it available across the USA?</span>
+            <span>+</span>
+          </button>
+          <div class="faq-answer hidden mt-3 text-sm text-slate-300">Yes, UniServe is live in all major US metro areas with expanding coverage.</div>
+        </div>
+        <div class="faq-item p-5 rounded-2xl bg-white/5 border border-white/10">
+          <button class="faq-question w-full flex justify-between items-center text-left">
+            <span>How do refunds work?</span>
+            <span>+</span>
+          </button>
+          <div class="faq-answer hidden mt-3 text-sm text-slate-300">Refunds are processed to the original payment method within 5 to 7 business days.</div>
+        </div>
+        <div class="faq-item p-5 rounded-2xl bg-white/5 border border-white/10">
+          <button class="faq-question w-full flex justify-between items-center text-left">
+            <span>Do you store payment info?</span>
+            <span>+</span>
+          </button>
+          <div class="faq-answer hidden mt-3 text-sm text-slate-300">We use tokenized payments and do not store full card details.</div>
+        </div>
+        <div class="faq-item p-5 rounded-2xl bg-white/5 border border-white/10">
+          <button class="faq-question w-full flex justify-between items-center text-left">
+            <span>WhatsApp marketing compliance?</span>
+            <span>+</span>
+          </button>
+          <div class="faq-answer hidden mt-3 text-sm text-slate-300">We follow opt-in policies and compliance guidelines for message campaigns.</div>
+        </div>
+        <div class="faq-item p-5 rounded-2xl bg-white/5 border border-white/10">
+          <button class="faq-question w-full flex justify-between items-center text-left">
+            <span>Can I sell on marketplace?</span>
+            <span>+</span>
+          </button>
+          <div class="faq-answer hidden mt-3 text-sm text-slate-300">Yes. Create a seller profile and list products with verification.</div>
+        </div>
+        <div class="faq-item p-5 rounded-2xl bg-white/5 border border-white/10">
+          <button class="faq-question w-full flex justify-between items-center text-left">
+            <span>Are providers verified?</span>
+            <span>+</span>
+          </button>
+          <div class="faq-answer hidden mt-3 text-sm text-slate-300">All providers pass background checks and quality scoring.</div>
+        </div>
+        <div class="faq-item p-5 rounded-2xl bg-white/5 border border-white/10">
+          <button class="faq-question w-full flex justify-between items-center text-left">
+            <span>How do subscriptions renew?</span>
+            <span>+</span>
+          </button>
+          <div class="faq-answer hidden mt-3 text-sm text-slate-300">Manage renewals in your dashboard with reminders and auto-pay options.</div>
+        </div>
+        <div class="faq-item p-5 rounded-2xl bg-white/5 border border-white/10">
+          <button class="faq-question w-full flex justify-between items-center text-left">
+            <span>Do you offer business onboarding?</span>
+            <span>+</span>
+          </button>
+          <div class="faq-answer hidden mt-3 text-sm text-slate-300">Yes, our team helps with setup, integrations, and training.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="py-16 bg-slate-950 border-t border-white/10">
+    <div class="max-w-7xl mx-auto px-6 grid lg:grid-cols-5 gap-10">
+      <div class="lg:col-span-2">
+        <div class="flex items-center gap-3">
+          <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-blue-500 to-cyan-400 flex items-center justify-center font-display text-lg">U</div>
+          <span class="font-display text-xl">UniServe</span>
+        </div>
+        <p class="mt-4 text-sm text-slate-300 max-w-sm">All-in-one services for travel, delivery, payments, and business operations across the USA.</p>
+        <div class="mt-6 flex gap-3">
+          <button class="px-4 py-2 rounded-full border border-white/20">App Store</button>
+          <button class="px-4 py-2 rounded-full border border-white/20">Google Play</button>
+        </div>
+      </div>
+      <div>
+        <h4 class="font-semibold">Company</h4>
+        <ul class="mt-3 space-y-2 text-sm text-slate-300">
+          <li>About</li>
+          <li>Careers</li>
+          <li>Partners</li>
+          <li>Press</li>
+        </ul>
+      </div>
+      <div>
+        <h4 class="font-semibold">Services</h4>
+        <ul class="mt-3 space-y-2 text-sm text-slate-300">
+          <li>Travel</li>
+          <li>Delivery</li>
+          <li>Marketing</li>
+          <li>Marketplace</li>
+        </ul>
+      </div>
+      <div>
+        <h4 class="font-semibold">Support</h4>
+        <ul class="mt-3 space-y-2 text-sm text-slate-300">
+          <li>Help Center</li>
+          <li>Contact</li>
+          <li>Status</li>
+          <li>Developers</li>
+        </ul>
+      </div>
+      <div>
+        <h4 class="font-semibold">Legal</h4>
+        <ul class="mt-3 space-y-2 text-sm text-slate-300">
+          <li>Privacy</li>
+          <li>Terms</li>
+          <li>Security</li>
+          <li>Compliance</li>
+        </ul>
+      </div>
+      <div class="lg:col-span-3">
+        <h4 class="font-semibold">Newsletter</h4>
+        <div class="mt-3 flex flex-col sm:flex-row gap-3">
+          <input type="email" class="flex-1 px-4 py-3 rounded-full bg-slate-900 border border-white/10 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500" placeholder="Email address" />
+          <button class="px-6 py-3 rounded-full bg-white text-slate-900 font-semibold">Subscribe</button>
+        </div>
+      </div>
+      <div class="lg:col-span-2 flex gap-4 items-center">
+        <span class="text-sm text-slate-400">Follow</span>
+        <div class="flex gap-3">
+          <svg viewBox="0 0 40 40" class="w-10 h-10 transition-transform group-hover:-translate-y-1">
+            <circle cx="20" cy="20" r="18" fill="rgba(255,255,255,0.05)" stroke="rgba(255,255,255,0.15)" />
+            <text x="20" y="24" text-anchor="middle" font-size="12" fill="#e2e8f0" font-family="Plus Jakarta Sans, sans-serif">IN</text>
+          </svg>
+          <svg viewBox="0 0 40 40" class="w-10 h-10 transition-transform group-hover:-translate-y-1">
+            <circle cx="20" cy="20" r="18" fill="rgba(255,255,255,0.05)" stroke="rgba(255,255,255,0.15)" />
+            <text x="20" y="24" text-anchor="middle" font-size="12" fill="#e2e8f0" font-family="Plus Jakarta Sans, sans-serif">YT</text>
+          </svg>
+          <svg viewBox="0 0 40 40" class="w-10 h-10 transition-transform group-hover:-translate-y-1">
+            <circle cx="20" cy="20" r="18" fill="rgba(255,255,255,0.05)" stroke="rgba(255,255,255,0.15)" />
+            <text x="20" y="24" text-anchor="middle" font-size="12" fill="#e2e8f0" font-family="Plus Jakarta Sans, sans-serif">TW</text>
+          </svg>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Back to Top -->
+  <button id="backToTop" class="fixed bottom-6 right-6 hidden w-12 h-12 rounded-full bg-gradient-to-r from-blue-500 to-cyan-400 text-slate-900 font-bold shadow-glow">Top</button>
+
+  <script>
+    const navbar = document.getElementById('navbar');
+    const backToTop = document.getElementById('backToTop');
+    const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+    const mobileMenu = document.getElementById('mobileMenu');
+
+    window.addEventListener('scroll', () => {
+      const scrolled = window.scrollY > 20;
+      navbar.classList.toggle('bg-slate-900/80', scrolled);
+      navbar.classList.toggle('backdrop-blur', scrolled);
+      navbar.classList.toggle('shadow-lg', scrolled);
+      backToTop.classList.toggle('hidden', window.scrollY < 500);
+    });
+
+    mobileMenuBtn.addEventListener('click', () => {
+      mobileMenu.classList.toggle('hidden');
+    });
+
+    backToTop.addEventListener('click', () => {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+
+    const placeholders = ['Search flights...', 'Order groceries...', 'Book a plumber...', 'Find hotels...', 'Run WhatsApp campaigns...'];
+    let placeholderIndex = 0;
+    const searchInput = document.getElementById('searchInput');
+    setInterval(() => {
+      placeholderIndex = (placeholderIndex + 1) % placeholders.length;
+      searchInput.placeholder = placeholders[placeholderIndex];
+    }, 2500);
+
+    const chips = document.querySelectorAll('.chip');
+    const serviceCards = document.querySelectorAll('.service-card');
+    chips.forEach((chip) => {
+      chip.addEventListener('click', () => {
+        chips.forEach((c) => c.classList.remove('bg-white/10'));
+        chip.classList.add('bg-white/10');
+        const filter = chip.dataset.filter;
+        serviceCards.forEach((card) => {
+          const match = filter === 'all' || card.dataset.category === filter;
+          if (match) {
+            card.classList.remove('hidden');
+            requestAnimationFrame(() => card.classList.remove('opacity-0', 'scale-95', 'pointer-events-none'));
+          } else {
+            card.classList.add('opacity-0', 'scale-95', 'pointer-events-none');
+            setTimeout(() => card.classList.add('hidden'), 300);
+          }
+        });
+      });
+    });
+
+    const searchForm = document.getElementById('searchForm');
+    const categoryFilter = document.getElementById('categoryFilter');
+    const searchResults = document.getElementById('searchResults');
+
+    searchForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const query = searchInput.value.trim().toLowerCase();
+      const category = categoryFilter.value;
+      let matches = 0;
+      serviceCards.forEach((card) => {
+        const title = card.dataset.title.toLowerCase();
+        const cardCategory = card.dataset.category;
+        const match = (category === 'all' || cardCategory === category) && (!query || title.includes(query));
+        card.classList.toggle('ring-2', match);
+        card.classList.toggle('ring-blue-500', match);
+        if (match) matches += 1;
+      });
+      searchResults.textContent = matches ? `Showing ${matches} matching services for "${query || category}".` : 'No exact matches found. Try another term.';
+      searchResults.classList.remove('hidden');
+      document.getElementById('services').scrollIntoView({ behavior: 'smooth' });
+      setTimeout(() => {
+        serviceCards.forEach((card) => card.classList.remove('ring-2', 'ring-blue-500'));
+      }, 2000);
+    });
+
+    const progressBar = document.getElementById('progressBar');
+    const howSection = document.getElementById('how');
+    window.addEventListener('scroll', () => {
+      const rect = howSection.getBoundingClientRect();
+      const progress = Math.min(Math.max(0, window.innerHeight - rect.top), rect.height);
+      const percent = Math.min(100, (progress / rect.height) * 100);
+      progressBar.style.width = `${percent}%`;
+    });
+
+    const track = document.getElementById('testimonialTrack');
+    const prevBtn = document.getElementById('prevTestimonial');
+    const nextBtn = document.getElementById('nextTestimonial');
+    let slideIndex = 0;
+    function updateSlider() {
+      const cardWidth = track.children[0].offsetWidth + 24;
+      track.style.transform = `translateX(-${slideIndex * cardWidth}px)`;
+    }
+    prevBtn.addEventListener('click', () => {
+      slideIndex = Math.max(0, slideIndex - 1);
+      updateSlider();
+    });
+    nextBtn.addEventListener('click', () => {
+      slideIndex = Math.min(track.children.length - 1, slideIndex + 1);
+      updateSlider();
+    });
+    window.addEventListener('resize', updateSlider);
+
+    const priceToggle = document.getElementById('priceToggle');
+    const toggleDot = document.getElementById('toggleDot');
+    let yearly = false;
+    priceToggle.addEventListener('click', () => {
+      yearly = !yearly;
+      toggleDot.style.transform = yearly ? 'translateX(28px)' : 'translateX(0)';
+      document.querySelectorAll('[data-price]').forEach((priceEl) => {
+        const base = Number(priceEl.dataset.price);
+        const newPrice = yearly ? Math.round(base * 0.8) : base;
+        priceEl.textContent = `$${newPrice}`;
+      });
+    });
+
+    document.querySelectorAll('.faq-question').forEach((btn) => {
+      btn.addEventListener('click', () => {
+        const answer = btn.parentElement.querySelector('.faq-answer');
+        const open = !answer.classList.contains('hidden');
+        document.querySelectorAll('.faq-answer').forEach((el) => el.classList.add('hidden'));
+        document.querySelectorAll('.faq-question span:last-child').forEach((el) => (el.textContent = '+'));
+        if (!open) {
+          answer.classList.remove('hidden');
+          btn.querySelector('span:last-child').textContent = '-';
+        }
+      });
+    });
+  </script>
+</body>
+</html>
+
+
+

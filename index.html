@@ -1,132 +1,180 @@
 ﻿
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="light">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>UniServe - All-in-one Services</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
   <script src="https://cdn.tailwindcss.com"></script>
-  <script>
-    tailwind.config = {
-      theme: {
-        extend: {
-          fontFamily: {
-            display: ['"Space Grotesk"', 'sans-serif'],
-            body: ['"Plus Jakarta Sans"', 'sans-serif'],
-          },
-          colors: {
-            primary: {
-              500: '#3b82f6',
-              600: '#2563eb',
-              700: '#1d4ed8',
-            },
-          },
-          boxShadow: {
-            glow: '0 20px 60px -25px rgba(37, 99, 235, 0.6)',
-          },
-        },
-      },
-    };
-  </script>
   <style>
-    @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap');
+    :root {
+      --bg: #f8fafc;
+      --surface: #ffffff;
+      --surface-2: #f1f5f9;
+      --text: #0f172a;
+      --muted: #475569;
+      --border: rgba(15, 23, 42, 0.12);
+      --primary: #2563eb;
+      --primary2: #38bdf8;
+      --shadow: 0 24px 60px -32px rgba(37, 99, 235, 0.45);
+      --glass: rgba(255, 255, 255, 0.72);
+      --hero-overlay: linear-gradient(135deg, rgba(248, 250, 252, 0.88), rgba(248, 250, 252, 0.65));
+    }
+
+    [data-theme="dark"] {
+      --bg: #0b1220;
+      --surface: #0f172a;
+      --surface-2: #111827;
+      --text: #e2e8f0;
+      --muted: #94a3b8;
+      --border: rgba(148, 163, 184, 0.2);
+      --primary: #60a5fa;
+      --primary2: #22d3ee;
+      --shadow: 0 26px 70px -35px rgba(96, 165, 250, 0.6);
+      --glass: rgba(15, 23, 42, 0.7);
+      --hero-overlay: linear-gradient(135deg, rgba(11, 18, 32, 0.85), rgba(11, 18, 32, 0.6));
+    }
+
     html { scroll-behavior: smooth; }
+    body { font-family: "Inter", sans-serif; }
+
+    .bg-app { background: var(--bg); }
+    .surface { background: var(--surface); }
+    .surface-2 { background: var(--surface-2); }
+    .text-app { color: var(--text); }
+    .text-muted { color: var(--muted); }
+    .border-app { border-color: var(--border); }
+    .glass { background: var(--glass); backdrop-filter: blur(16px); }
+    .btn-primary { background: linear-gradient(135deg, var(--primary), var(--primary2)); color: #0b1020; }
+    .glow { box-shadow: var(--shadow); }
+    .hero-overlay { background: var(--hero-overlay); }
+
+    .card { transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease, opacity 0.25s ease; }
+    .card:hover { transform: translateY(-4px); box-shadow: var(--shadow); }
+
+    .reveal { opacity: 0; transform: translateY(14px); transition: opacity 0.6s ease, transform 0.6s ease; }
+    .reveal.is-visible { opacity: 1; transform: translateY(0); }
+
+    .is-hidden { opacity: 0; transform: scale(0.97); pointer-events: none; }
+    .highlight { box-shadow: 0 0 0 2px var(--primary); }
+
+    .theme-transition, .theme-transition * {
+      transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    button:focus-visible,
+    a:focus-visible,
+    input:focus-visible,
+    select:focus-visible {
+      outline: 2px solid var(--primary);
+      outline-offset: 2px;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      .theme-transition, .theme-transition * { transition: none !important; }
+      .card, .reveal { transition: none !important; }
+    }
   </style>
 </head>
-<body class="bg-slate-950 text-slate-100 font-body bg-[radial-gradient(circle_at_top,_rgba(59,130,246,0.12),_transparent_45%),radial-gradient(circle_at_bottom,_rgba(14,165,233,0.08),_transparent_45%)]">
+<body class="bg-app text-app">
   <!-- Navbar -->
   <header id="navbar" class="fixed top-0 left-0 right-0 z-50 transition-all duration-300">
     <nav class="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
       <div class="flex items-center gap-3">
-        <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-blue-500 to-cyan-400 flex items-center justify-center font-display text-lg">U</div>
-        <span class="font-display text-xl tracking-tight">UniServe</span>
+        <div class="w-10 h-10 rounded-2xl bg-gradient-to-br from-[var(--primary)] to-[var(--primary2)] text-slate-900 flex items-center justify-center font-semibold">U</div>
+        <span class="text-xl font-semibold tracking-tight">UniServe</span>
       </div>
-      <div class="hidden lg:flex items-center gap-8 text-sm text-slate-200">
-        <a class="hover:text-white transition" href="#services">Services</a>
-        <a class="hover:text-white transition" href="#how">How it works</a>
-        <a class="hover:text-white transition" href="#pricing">Pricing</a>
-        <a class="hover:text-white transition" href="#reviews">Reviews</a>
-        <a class="hover:text-white transition" href="#faq">FAQ</a>
+      <div class="hidden lg:flex items-center gap-8 text-sm text-muted">
+        <a class="hover:text-app transition" href="#services">Services</a>
+        <a class="hover:text-app transition" href="#how">How it Works</a>
+        <a class="hover:text-app transition" href="#pricing">Pricing</a>
+        <a class="hover:text-app transition" href="#reviews">Reviews</a>
+        <a class="hover:text-app transition" href="#faq">FAQ</a>
       </div>
       <div class="hidden lg:flex items-center gap-3">
-        <button class="px-4 py-2 text-sm rounded-full border border-white/20 hover:border-white/50 transition focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500">Sign in</button>
-        <button class="px-5 py-2 text-sm rounded-full bg-white text-slate-900 font-semibold hover:bg-slate-100 transition focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500">Get Started</button>
+        <button id="themeToggle" aria-label="Toggle theme" class="w-10 h-10 rounded-full border border-app surface-2 flex items-center justify-center focus:outline-none focus-visible:ring-2 focus-visible:ring-[var(--primary)]">
+          <svg id="sunIcon" class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="12" cy="12" r="4"></circle>
+            <path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"></path>
+          </svg>
+          <svg id="moonIcon" class="w-5 h-5 hidden" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+          </svg>
+        </button>
+        <button class="px-4 py-2 text-sm rounded-full border border-app surface-2 hover:border-[var(--primary)] transition focus:outline-none focus-visible:ring-2 focus-visible:ring-[var(--primary)]">Sign in</button>
+        <button class="px-5 py-2 text-sm rounded-full btn-primary font-semibold glow focus:outline-none focus-visible:ring-2 focus-visible:ring-[var(--primary)]">Get Started</button>
       </div>
-      <button id="mobileMenuBtn" class="lg:hidden w-10 h-10 rounded-full border border-white/20 flex items-center justify-center">Menu</button>
+      <button id="mobileMenuBtn" class="lg:hidden w-10 h-10 rounded-full border border-app surface-2 flex items-center justify-center">Menu</button>
     </nav>
-    <div id="mobileMenu" class="lg:hidden hidden bg-slate-900/95 border-t border-white/10">
+    <div id="mobileMenu" class="lg:hidden hidden glass border-t border-app">
       <div class="px-6 py-4 flex flex-col gap-4 text-sm">
         <a href="#services">Services</a>
-        <a href="#how">How it works</a>
+        <a href="#how">How it Works</a>
         <a href="#pricing">Pricing</a>
         <a href="#reviews">Reviews</a>
         <a href="#faq">FAQ</a>
         <div class="flex gap-3">
-          <button class="px-4 py-2 text-sm rounded-full border border-white/20">Sign in</button>
-          <button class="px-5 py-2 text-sm rounded-full bg-white text-slate-900 font-semibold">Get Started</button>
+          <button id="themeToggleMobile" aria-label="Toggle theme" class="px-4 py-2 text-sm rounded-full border border-app surface-2">Theme</button>
+          <button class="px-4 py-2 text-sm rounded-full border border-app surface-2">Sign in</button>
+          <button class="px-5 py-2 text-sm rounded-full btn-primary font-semibold">Get Started</button>
         </div>
       </div>
     </div>
   </header>
 
   <!-- Hero -->
-  <section class="pt-28 pb-16 bg-gradient-to-b from-slate-950 via-slate-950 to-slate-900">
-    <div class="max-w-7xl mx-auto px-6 grid lg:grid-cols-2 gap-12 items-center">
+  <section class="relative pt-28 pb-16 overflow-hidden">
+    <img class="absolute inset-0 w-full h-full object-cover opacity-40" src="https://images.unsplash.com/photo-1469474968028-56623f02e42e?auto=format&fit=crop&w=1600&q=80" alt="USA skyline" loading="lazy" />
+    <div class="absolute inset-0 hero-overlay"></div>
+    <div class="relative max-w-7xl mx-auto px-6 grid lg:grid-cols-2 gap-12 items-center">
       <div>
-        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-blue-500/40 text-xs text-blue-200 bg-blue-500/10 mb-6">Live in USA</div>
-        <h1 class="font-display text-4xl sm:text-5xl lg:text-6xl leading-tight">Everything you need. One platform.</h1>
-        <p class="mt-5 text-lg text-slate-300 max-w-xl">USA-based all-in-one hub for travel, delivery, services, and marketing. Fast bookings, secure payments, and verified providers across major cities.</p>
+        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-app text-xs text-muted surface-2 mb-6">Made for USA</div>
+        <h1 class="text-4xl sm:text-5xl lg:text-6xl font-semibold leading-tight">Everything you need. One platform.</h1>
+        <p class="mt-5 text-lg text-muted max-w-xl">USA-based all-in-one hub for travel, delivery, services, and business tools. Fast bookings, secure payments, and trusted providers.</p>
         <div class="mt-8 flex flex-wrap gap-4">
-          <button class="px-6 py-3 rounded-full bg-gradient-to-r from-blue-500 to-cyan-400 text-slate-900 font-semibold shadow-glow focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500">Start Free</button>
-          <a href="#services" class="px-6 py-3 rounded-full border border-white/20 hover:border-white/50 transition focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500">Explore Services</a>
+          <button class="px-6 py-3 rounded-full btn-primary font-semibold glow focus:outline-none focus-visible:ring-2 focus-visible:ring-[var(--primary)]">Start Free</button>
+          <a href="#services" class="px-6 py-3 rounded-full border border-app surface-2 hover:border-[var(--primary)] transition focus:outline-none focus-visible:ring-2 focus-visible:ring-[var(--primary)]">Explore Services</a>
         </div>
-        <div class="mt-10 grid grid-cols-2 sm:grid-cols-4 gap-4 text-xs text-slate-300">
-          <div class="px-3 py-2 rounded-xl bg-white/5 border border-white/10">Secure Payments</div>
-          <div class="px-3 py-2 rounded-xl bg-white/5 border border-white/10">Verified Providers</div>
-          <div class="px-3 py-2 rounded-xl bg-white/5 border border-white/10">Fast Delivery</div>
-          <div class="px-3 py-2 rounded-xl bg-white/5 border border-white/10">24/7 Support</div>
+        <div class="mt-10 grid grid-cols-2 sm:grid-cols-4 gap-4 text-xs text-muted">
+          <div class="px-3 py-2 rounded-xl surface border border-app">Secure Payments</div>
+          <div class="px-3 py-2 rounded-xl surface border border-app">Verified Providers</div>
+          <div class="px-3 py-2 rounded-xl surface border border-app">Fast Delivery</div>
+          <div class="px-3 py-2 rounded-xl surface border border-app">24/7 Support</div>
         </div>
       </div>
       <div class="relative">
-        <div class="absolute -top-8 -right-8 w-40 h-40 bg-blue-500/20 blur-3xl"></div>
+        <div class="absolute -top-10 -right-10 w-48 h-48 bg-gradient-to-br from-[var(--primary)] to-[var(--primary2)] opacity-20 blur-3xl"></div>
         <div class="grid gap-4">
-          <div class="grid grid-cols-2 gap-4">
-            <div class="p-4 rounded-2xl bg-white/5 border border-white/10 hover:border-blue-400/50 transition">
-              <div class="text-sm text-slate-300">Flight Deal</div>
-              <div class="mt-3 text-lg font-semibold">NYC to SFO</div>
-              <div class="mt-2 text-xs text-slate-400">$248 nonstop</div>
-            </div>
-            <div class="p-4 rounded-2xl bg-white/5 border border-white/10 hover:border-blue-400/50 transition">
-              <div class="text-sm text-slate-300">Event Ticket</div>
-              <div class="mt-3 text-lg font-semibold">Jazz Night</div>
-              <div class="mt-2 text-xs text-slate-400">Austin, tonight</div>
-            </div>
-          </div>
-          <div class="p-4 rounded-2xl bg-white/5 border border-white/10">
+          <div class="surface border border-app rounded-3xl p-5 card">
             <div class="flex items-center justify-between">
               <div>
-                <div class="text-sm text-slate-300">Nearby Providers</div>
-                <div class="mt-2 text-lg font-semibold">Service Map</div>
+                <div class="text-sm text-muted">Weekly grocery haul</div>
+                <div class="mt-1 text-lg font-semibold">Fresh delivery in 30 min</div>
               </div>
-              <div class="w-12 h-12 rounded-full bg-blue-500/20 flex items-center justify-center text-xs">MAP</div>
+              <div class="text-xs px-3 py-1 rounded-full surface-2 border border-app">Delivery</div>
             </div>
-            <div class="mt-4 grid grid-cols-3 gap-2">
-              <div class="h-16 rounded-xl bg-slate-900 border border-white/10 flex items-center justify-center text-xs">NYC</div>
-              <div class="h-16 rounded-xl bg-slate-900 border border-white/10 flex items-center justify-center text-xs">LA</div>
-              <div class="h-16 rounded-xl bg-slate-900 border border-white/10 flex items-center justify-center text-xs">Miami</div>
-            </div>
+            <img class="mt-4 w-full h-40 object-cover rounded-2xl" src="https://images.unsplash.com/photo-1542838132-92c53300491e?auto=format&fit=crop&w=900&q=80" alt="Fresh grocery delivery" loading="lazy" />
           </div>
           <div class="grid grid-cols-2 gap-4">
-            <div class="p-4 rounded-2xl bg-white/5 border border-white/10">
-              <div class="text-sm text-slate-300">Grocery Drop</div>
-              <div class="mt-3 text-lg font-semibold">15 min ETA</div>
-              <div class="mt-2 text-xs text-slate-400">Fresh and local</div>
+            <div class="surface border border-app rounded-3xl p-4 card">
+              <div class="text-sm text-muted">Travel bundle</div>
+              <div class="mt-1 text-base font-semibold">NYC to SFO</div>
+              <img class="mt-3 w-full h-28 object-cover rounded-2xl" src="https://images.unsplash.com/photo-1495314736024-fa5e4b37b979?auto=format&fit=crop&w=900&q=80" alt="Airplane travel" loading="lazy" />
             </div>
-            <div class="p-4 rounded-2xl bg-white/5 border border-white/10">
-              <div class="text-sm text-slate-300">Meetings</div>
-              <div class="mt-3 text-lg font-semibold">Secure Room</div>
-              <div class="mt-2 text-xs text-slate-400">Encrypted calls</div>
+            <div class="surface border border-app rounded-3xl p-4 card">
+              <div class="text-sm text-muted">Event tickets</div>
+              <div class="mt-1 text-base font-semibold">Live jazz night</div>
+              <img class="mt-3 w-full h-28 object-cover rounded-2xl" src="https://images.unsplash.com/photo-1506157786151-b8491531f063?auto=format&fit=crop&w=900&q=80" alt="Concert event" loading="lazy" />
             </div>
+          </div>
+          <div class="flex flex-wrap gap-3 text-xs text-muted">
+            <div class="px-3 py-1 rounded-full surface border border-app">120k+ users</div>
+            <div class="px-3 py-1 rounded-full surface border border-app">4.8 rating</div>
+            <div class="px-3 py-1 rounded-full surface border border-app">Nationwide</div>
           </div>
         </div>
       </div>
@@ -134,516 +182,528 @@
   </section>
 
   <!-- Search -->
-  <section class="py-12 bg-slate-900">
+  <section class="py-12 bg-app">
     <div class="max-w-6xl mx-auto px-6">
-      <div class="p-6 rounded-3xl bg-white/5 border border-white/10 shadow-lg">
+      <div class="surface border border-app rounded-3xl p-6 glow">
         <form id="searchForm" class="grid md:grid-cols-[1fr_auto_auto] gap-4 items-center">
-          <input id="searchInput" type="text" class="w-full px-5 py-4 rounded-2xl bg-slate-950 border border-white/10 focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="Search flights..." />
-          <select id="categoryFilter" class="px-4 py-4 rounded-2xl bg-slate-950 border border-white/10 focus:outline-none focus:ring-2 focus:ring-blue-500">
+          <input id="searchInput" type="text" class="w-full px-5 py-4 rounded-2xl surface-2 border border-app focus:outline-none focus:ring-2 focus:ring-[var(--primary)]" placeholder="Search flights..." />
+          <select id="categoryFilter" class="px-4 py-4 rounded-2xl surface-2 border border-app focus:outline-none focus:ring-2 focus:ring-[var(--primary)]">
             <option value="all">All</option>
             <option value="Travel">Travel</option>
             <option value="Delivery">Delivery</option>
             <option value="Services">Services</option>
-            <option value="Marketing">Marketing</option>
-            <option value="Payments">Payments</option>
+            <option value="Business">Business</option>
+            <option value="Utilities">Utilities</option>
             <option value="Marketplace">Marketplace</option>
           </select>
-          <button class="px-6 py-4 rounded-2xl bg-gradient-to-r from-blue-500 to-cyan-400 text-slate-900 font-semibold focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500">Search</button>
+          <button class="px-6 py-4 rounded-2xl btn-primary font-semibold">Search</button>
         </form>
-        <div id="searchHint" class="mt-4 text-sm text-slate-400">Try: flights, hotel deals, plumber, grocery delivery, AI content</div>
+        <div id="searchHint" class="mt-4 text-sm text-muted">Try: flights, hotel deals, home services, grocery delivery, AI content</div>
       </div>
     </div>
   </section>
 
-  <!-- Services Grid -->
-  <section id="services" class="py-16 bg-slate-950">
+  <!-- Services -->
+  <section id="services" class="py-16 bg-app">
     <div class="max-w-7xl mx-auto px-6">
       <div class="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-6">
         <div>
-          <h2 class="font-display text-3xl">All-in-one Services</h2>
-          <p class="mt-3 text-slate-300 max-w-xl">Discover every service in one marketplace, from travel to marketing to daily essentials.</p>
+          <h2 class="text-3xl font-semibold">All-in-one Services</h2>
+          <p class="mt-3 text-muted max-w-xl">From travel to utilities to business tools, everything is unified in one marketplace.</p>
         </div>
         <div class="flex flex-wrap gap-3" id="categoryChips">
-          <button data-filter="all" class="chip px-4 py-2 rounded-full border border-white/20 bg-white/10 transition">All</button>
-          <button data-filter="Travel" class="chip px-4 py-2 rounded-full border border-white/20 transition">Travel</button>
-          <button data-filter="Delivery" class="chip px-4 py-2 rounded-full border border-white/20 transition">Delivery</button>
-          <button data-filter="Services" class="chip px-4 py-2 rounded-full border border-white/20 transition">Services</button>
-          <button data-filter="Business" class="chip px-4 py-2 rounded-full border border-white/20 transition">Business</button>
-          <button data-filter="Marketing" class="chip px-4 py-2 rounded-full border border-white/20 transition">Marketing</button>
-          <button data-filter="Utilities" class="chip px-4 py-2 rounded-full border border-white/20 transition">Utilities</button>
-          <button data-filter="Marketplace" class="chip px-4 py-2 rounded-full border border-white/20 transition">Marketplace</button>
+          <button data-filter="all" class="chip px-4 py-2 rounded-full border border-app surface-2">All</button>
+          <button data-filter="Travel" class="chip px-4 py-2 rounded-full border border-app surface-2">Travel</button>
+          <button data-filter="Delivery" class="chip px-4 py-2 rounded-full border border-app surface-2">Delivery</button>
+          <button data-filter="Services" class="chip px-4 py-2 rounded-full border border-app surface-2">Services</button>
+          <button data-filter="Business" class="chip px-4 py-2 rounded-full border border-app surface-2">Business</button>
+          <button data-filter="Utilities" class="chip px-4 py-2 rounded-full border border-app surface-2">Utilities</button>
+          <button data-filter="Marketplace" class="chip px-4 py-2 rounded-full border border-app surface-2">Marketplace</button>
         </div>
       </div>
 
       <div id="servicesGrid" class="mt-10 grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
-        <div class="service-card group p-6 rounded-2xl bg-white/5 border border-white/10 hover:border-blue-400/60 hover:-translate-y-1 hover:shadow-xl hover:shadow-blue-500/10 transition-all" data-category="Business" data-title="AI Generation">
-          <div class="flex items-center justify-between">
-            <svg viewBox="0 0 40 40" class="w-10 h-10 transition-transform group-hover:-translate-y-1">
-              <rect x="2" y="2" width="36" height="36" rx="10" fill="rgba(59,130,246,0.3)" />
-              <text x="20" y="24" text-anchor="middle" font-size="12" fill="#e0f2fe" font-family="Plus Jakarta Sans, sans-serif">AI</text>
-            </svg>
-            <span class="text-xs px-3 py-1 rounded-full bg-blue-500/20 text-blue-200">Business</span>
+        <div class="service-card card surface border border-app rounded-3xl p-6" data-category="Business" data-title="AI Generation">
+          <img class="w-full h-36 object-cover rounded-2xl" src="https://images.unsplash.com/photo-1487058792275-0ad4aaf24ca7?auto=format&fit=crop&w=800&q=80" alt="AI workspace" loading="lazy" />
+          <div class="mt-4 flex items-center justify-between">
+            <div class="flex items-center gap-3">
+              <span class="w-9 h-9 rounded-xl bg-[var(--primary)] text-white text-xs font-semibold flex items-center justify-center">AI</span>
+              <h3 class="text-lg font-semibold">AI Generation</h3>
+            </div>
+            <span class="text-xs px-3 py-1 rounded-full surface-2 border border-app">Business</span>
           </div>
-          <h3 class="mt-4 text-lg font-semibold">AI Generation</h3>
-          <p class="mt-2 text-sm text-slate-300">Smart content, images, and automation tools.</p>
-          <a class="mt-4 inline-block text-sm text-blue-300 group-hover:text-blue-200" href="#">Learn more -></a>
+          <p class="mt-2 text-sm text-muted">Smart content, images, and automation tools.</p>
+          <a class="mt-4 inline-block text-sm text-[var(--primary)]" href="#">Learn more -></a>
         </div>
-        <div class="service-card group p-6 rounded-2xl bg-white/5 border border-white/10 hover:border-blue-400/60 hover:-translate-y-1 hover:shadow-xl hover:shadow-blue-500/10 transition-all" data-category="Delivery" data-title="Grocery">
-          <div class="flex items-center justify-between">
-            <svg viewBox="0 0 40 40" class="w-10 h-10 transition-transform group-hover:-translate-y-1">
-              <rect x="2" y="2" width="36" height="36" rx="10" fill="rgba(59,130,246,0.3)" />
-              <text x="20" y="24" text-anchor="middle" font-size="12" fill="#e0f2fe" font-family="Plus Jakarta Sans, sans-serif">GR</text>
-            </svg>
-            <span class="text-xs px-3 py-1 rounded-full bg-blue-500/20 text-blue-200">Delivery</span>
+        <div class="service-card card surface border border-app rounded-3xl p-6" data-category="Delivery" data-title="Grocery">
+          <img class="w-full h-36 object-cover rounded-2xl" src="https://images.unsplash.com/photo-1542838132-92c53300491e?auto=format&fit=crop&w=800&q=80" alt="Fresh groceries" loading="lazy" />
+          <div class="mt-4 flex items-center justify-between">
+            <div class="flex items-center gap-3">
+              <span class="w-9 h-9 rounded-xl bg-[var(--primary)] text-white text-xs font-semibold flex items-center justify-center">GR</span>
+              <h3 class="text-lg font-semibold">Grocery</h3>
+            </div>
+            <span class="text-xs px-3 py-1 rounded-full surface-2 border border-app">Delivery</span>
           </div>
-          <h3 class="mt-4 text-lg font-semibold">Grocery</h3>
-          <p class="mt-2 text-sm text-slate-300">Nearby stores with fast delivery.</p>
-          <a class="mt-4 inline-block text-sm text-blue-300 group-hover:text-blue-200" href="#">Learn more -></a>
+          <p class="mt-2 text-sm text-muted">Fresh groceries from nearby stores.</p>
+          <a class="mt-4 inline-block text-sm text-[var(--primary)]" href="#">Learn more -></a>
         </div>
-        <div class="service-card group p-6 rounded-2xl bg-white/5 border border-white/10 hover:border-blue-400/60 hover:-translate-y-1 hover:shadow-xl hover:shadow-blue-500/10 transition-all" data-category="Delivery" data-title="Food Delivery">
-          <div class="flex items-center justify-between">
-            <svg viewBox="0 0 40 40" class="w-10 h-10 transition-transform group-hover:-translate-y-1">
-              <rect x="2" y="2" width="36" height="36" rx="10" fill="rgba(59,130,246,0.3)" />
-              <text x="20" y="24" text-anchor="middle" font-size="12" fill="#e0f2fe" font-family="Plus Jakarta Sans, sans-serif">FD</text>
-            </svg>
-            <span class="text-xs px-3 py-1 rounded-full bg-blue-500/20 text-blue-200">Delivery</span>
+        <div class="service-card card surface border border-app rounded-3xl p-6" data-category="Delivery" data-title="Food Delivery">
+          <img class="w-full h-36 object-cover rounded-2xl" src="https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=800&q=80" alt="Food delivery" loading="lazy" />
+          <div class="mt-4 flex items-center justify-between">
+            <div class="flex items-center gap-3">
+              <span class="w-9 h-9 rounded-xl bg-[var(--primary)] text-white text-xs font-semibold flex items-center justify-center">FD</span>
+              <h3 class="text-lg font-semibold">Food Delivery</h3>
+            </div>
+            <span class="text-xs px-3 py-1 rounded-full surface-2 border border-app">Delivery</span>
           </div>
-          <h3 class="mt-4 text-lg font-semibold">Food Delivery</h3>
-          <p class="mt-2 text-sm text-slate-300">Local restaurants at your door.</p>
-          <a class="mt-4 inline-block text-sm text-blue-300 group-hover:text-blue-200" href="#">Learn more -></a>
+          <p class="mt-2 text-sm text-muted">Local restaurants delivered fast.</p>
+          <a class="mt-4 inline-block text-sm text-[var(--primary)]" href="#">Learn more -></a>
         </div>
-        <div class="service-card group p-6 rounded-2xl bg-white/5 border border-white/10 hover:border-blue-400/60 hover:-translate-y-1 hover:shadow-xl hover:shadow-blue-500/10 transition-all" data-category="Services" data-title="On-Demand Services">
-          <div class="flex items-center justify-between">
-            <svg viewBox="0 0 40 40" class="w-10 h-10 transition-transform group-hover:-translate-y-1">
-              <rect x="2" y="2" width="36" height="36" rx="10" fill="rgba(59,130,246,0.3)" />
-              <text x="20" y="24" text-anchor="middle" font-size="12" fill="#e0f2fe" font-family="Plus Jakarta Sans, sans-serif">OD</text>
-            </svg>
-            <span class="text-xs px-3 py-1 rounded-full bg-blue-500/20 text-blue-200">Services</span>
+        <div class="service-card card surface border border-app rounded-3xl p-6" data-category="Services" data-title="On-Demand Services">
+          <img class="w-full h-36 object-cover rounded-2xl" src="https://images.unsplash.com/photo-1581578731548-c64695cc6952?auto=format&fit=crop&w=800&q=80" alt="Home services" loading="lazy" />
+          <div class="mt-4 flex items-center justify-between">
+            <div class="flex items-center gap-3">
+              <span class="w-9 h-9 rounded-xl bg-[var(--primary)] text-white text-xs font-semibold flex items-center justify-center">OD</span>
+              <h3 class="text-lg font-semibold">On-Demand Services</h3>
+            </div>
+            <span class="text-xs px-3 py-1 rounded-full surface-2 border border-app">Services</span>
           </div>
-          <h3 class="mt-4 text-lg font-semibold">On-Demand Services</h3>
-          <p class="mt-2 text-sm text-slate-300">Book essential services instantly.</p>
-          <a class="mt-4 inline-block text-sm text-blue-300 group-hover:text-blue-200" href="#">Learn more -></a>
+          <p class="mt-2 text-sm text-muted">Book essential services instantly.</p>
+          <a class="mt-4 inline-block text-sm text-[var(--primary)]" href="#">Learn more -></a>
         </div>
-        <div class="service-card group p-6 rounded-2xl bg-white/5 border border-white/10 hover:border-blue-400/60 hover:-translate-y-1 hover:shadow-xl hover:shadow-blue-500/10 transition-all" data-category="Travel" data-title="Flight Booking">
-          <div class="flex items-center justify-between">
-            <svg viewBox="0 0 40 40" class="w-10 h-10 transition-transform group-hover:-translate-y-1">
-              <rect x="2" y="2" width="36" height="36" rx="10" fill="rgba(59,130,246,0.3)" />
-              <text x="20" y="24" text-anchor="middle" font-size="12" fill="#e0f2fe" font-family="Plus Jakarta Sans, sans-serif">FL</text>
-            </svg>
-            <span class="text-xs px-3 py-1 rounded-full bg-blue-500/20 text-blue-200">Travel</span>
+        <div class="service-card card surface border border-app rounded-3xl p-6" data-category="Travel" data-title="Flight Booking">
+          <img class="w-full h-36 object-cover rounded-2xl" src="https://images.unsplash.com/photo-1436491865332-7a61a109cc05?auto=format&fit=crop&w=800&q=80" alt="Flight booking" loading="lazy" />
+          <div class="mt-4 flex items-center justify-between">
+            <div class="flex items-center gap-3">
+              <span class="w-9 h-9 rounded-xl bg-[var(--primary)] text-white text-xs font-semibold flex items-center justify-center">FL</span>
+              <h3 class="text-lg font-semibold">Flight Booking</h3>
+            </div>
+            <span class="text-xs px-3 py-1 rounded-full surface-2 border border-app">Travel</span>
           </div>
-          <h3 class="mt-4 text-lg font-semibold">Flight Booking</h3>
-          <p class="mt-2 text-sm text-slate-300">Best fares, flexible schedules.</p>
-          <a class="mt-4 inline-block text-sm text-blue-300 group-hover:text-blue-200" href="#">Learn more -></a>
+          <p class="mt-2 text-sm text-muted">Best fares with flexible schedules.</p>
+          <a class="mt-4 inline-block text-sm text-[var(--primary)]" href="#">Learn more -></a>
         </div>
-        <div class="service-card group p-6 rounded-2xl bg-white/5 border border-white/10 hover:border-blue-400/60 hover:-translate-y-1 hover:shadow-xl hover:shadow-blue-500/10 transition-all" data-category="Travel" data-title="Hotel Booking">
-          <div class="flex items-center justify-between">
-            <svg viewBox="0 0 40 40" class="w-10 h-10 transition-transform group-hover:-translate-y-1">
-              <rect x="2" y="2" width="36" height="36" rx="10" fill="rgba(59,130,246,0.3)" />
-              <text x="20" y="24" text-anchor="middle" font-size="12" fill="#e0f2fe" font-family="Plus Jakarta Sans, sans-serif">HT</text>
-            </svg>
-            <span class="text-xs px-3 py-1 rounded-full bg-blue-500/20 text-blue-200">Travel</span>
+        <div class="service-card card surface border border-app rounded-3xl p-6" data-category="Travel" data-title="Hotel Booking">
+          <img class="w-full h-36 object-cover rounded-2xl" src="https://images.unsplash.com/photo-1501117716987-c8e1ecb2100c?auto=format&fit=crop&w=800&q=80" alt="Hotel booking" loading="lazy" />
+          <div class="mt-4 flex items-center justify-between">
+            <div class="flex items-center gap-3">
+              <span class="w-9 h-9 rounded-xl bg-[var(--primary)] text-white text-xs font-semibold flex items-center justify-center">HT</span>
+              <h3 class="text-lg font-semibold">Hotel Booking</h3>
+            </div>
+            <span class="text-xs px-3 py-1 rounded-full surface-2 border border-app">Travel</span>
           </div>
-          <h3 class="mt-4 text-lg font-semibold">Hotel Booking</h3>
-          <p class="mt-2 text-sm text-slate-300">Top stays with verified reviews.</p>
-          <a class="mt-4 inline-block text-sm text-blue-300 group-hover:text-blue-200" href="#">Learn more -></a>
+          <p class="mt-2 text-sm text-muted">Top stays with verified reviews.</p>
+          <a class="mt-4 inline-block text-sm text-[var(--primary)]" href="#">Learn more -></a>
         </div>
-        <div class="service-card group p-6 rounded-2xl bg-white/5 border border-white/10 hover:border-blue-400/60 hover:-translate-y-1 hover:shadow-xl hover:shadow-blue-500/10 transition-all" data-category="Travel" data-title="Tour Planning">
-          <div class="flex items-center justify-between">
-            <svg viewBox="0 0 40 40" class="w-10 h-10 transition-transform group-hover:-translate-y-1">
-              <rect x="2" y="2" width="36" height="36" rx="10" fill="rgba(59,130,246,0.3)" />
-              <text x="20" y="24" text-anchor="middle" font-size="12" fill="#e0f2fe" font-family="Plus Jakarta Sans, sans-serif">TR</text>
-            </svg>
-            <span class="text-xs px-3 py-1 rounded-full bg-blue-500/20 text-blue-200">Travel</span>
+        <div class="service-card card surface border border-app rounded-3xl p-6" data-category="Travel" data-title="Tour Planning">
+          <img class="w-full h-36 object-cover rounded-2xl" src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=800&q=80" alt="Tour planning" loading="lazy" />
+          <div class="mt-4 flex items-center justify-between">
+            <div class="flex items-center gap-3">
+              <span class="w-9 h-9 rounded-xl bg-[var(--primary)] text-white text-xs font-semibold flex items-center justify-center">TP</span>
+              <h3 class="text-lg font-semibold">Tour Planning</h3>
+            </div>
+            <span class="text-xs px-3 py-1 rounded-full surface-2 border border-app">Travel</span>
           </div>
-          <h3 class="mt-4 text-lg font-semibold">Tour Planning</h3>
-          <p class="mt-2 text-sm text-slate-300">Curated trips and local guides.</p>
-          <a class="mt-4 inline-block text-sm text-blue-300 group-hover:text-blue-200" href="#">Learn more -></a>
+          <p class="mt-2 text-sm text-muted">Curated trips and local guides.</p>
+          <a class="mt-4 inline-block text-sm text-[var(--primary)]" href="#">Learn more -></a>
         </div>
-        <div class="service-card group p-6 rounded-2xl bg-white/5 border border-white/10 hover:border-blue-400/60 hover:-translate-y-1 hover:shadow-xl hover:shadow-blue-500/10 transition-all" data-category="Travel" data-title="Events">
-          <div class="flex items-center justify-between">
-            <svg viewBox="0 0 40 40" class="w-10 h-10 transition-transform group-hover:-translate-y-1">
-              <rect x="2" y="2" width="36" height="36" rx="10" fill="rgba(59,130,246,0.3)" />
-              <text x="20" y="24" text-anchor="middle" font-size="12" fill="#e0f2fe" font-family="Plus Jakarta Sans, sans-serif">EV</text>
-            </svg>
-            <span class="text-xs px-3 py-1 rounded-full bg-blue-500/20 text-blue-200">Travel</span>
+        <div class="service-card card surface border border-app rounded-3xl p-6" data-category="Travel" data-title="Events">
+          <img class="w-full h-36 object-cover rounded-2xl" src="https://images.unsplash.com/photo-1492684223066-81342ee5ff30?auto=format&fit=crop&w=800&q=80" alt="Event tickets" loading="lazy" />
+          <div class="mt-4 flex items-center justify-between">
+            <div class="flex items-center gap-3">
+              <span class="w-9 h-9 rounded-xl bg-[var(--primary)] text-white text-xs font-semibold flex items-center justify-center">EV</span>
+              <h3 class="text-lg font-semibold">Events</h3>
+            </div>
+            <span class="text-xs px-3 py-1 rounded-full surface-2 border border-app">Travel</span>
           </div>
-          <h3 class="mt-4 text-lg font-semibold">Events</h3>
-          <p class="mt-2 text-sm text-slate-300">Tickets for concerts and shows.</p>
-          <a class="mt-4 inline-block text-sm text-blue-300 group-hover:text-blue-200" href="#">Learn more -></a>
+          <p class="mt-2 text-sm text-muted">Tickets for concerts and shows.</p>
+          <a class="mt-4 inline-block text-sm text-[var(--primary)]" href="#">Learn more -></a>
         </div>
-        <div class="service-card group p-6 rounded-2xl bg-white/5 border border-white/10 hover:border-blue-400/60 hover:-translate-y-1 hover:shadow-xl hover:shadow-blue-500/10 transition-all" data-category="Business" data-title="Online Meeting">
-          <div class="flex items-center justify-between">
-            <svg viewBox="0 0 40 40" class="w-10 h-10 transition-transform group-hover:-translate-y-1">
-              <rect x="2" y="2" width="36" height="36" rx="10" fill="rgba(59,130,246,0.3)" />
-              <text x="20" y="24" text-anchor="middle" font-size="12" fill="#e0f2fe" font-family="Plus Jakarta Sans, sans-serif">OM</text>
-            </svg>
-            <span class="text-xs px-3 py-1 rounded-full bg-blue-500/20 text-blue-200">Business</span>
+        <div class="service-card card surface border border-app rounded-3xl p-6" data-category="Business" data-title="Online Meeting">
+          <img class="w-full h-36 object-cover rounded-2xl" src="https://images.unsplash.com/photo-1553877522-43269d4ea984?auto=format&fit=crop&w=800&q=80" alt="Online meeting" loading="lazy" />
+          <div class="mt-4 flex items-center justify-between">
+            <div class="flex items-center gap-3">
+              <span class="w-9 h-9 rounded-xl bg-[var(--primary)] text-white text-xs font-semibold flex items-center justify-center">OM</span>
+              <h3 class="text-lg font-semibold">Online Meeting</h3>
+            </div>
+            <span class="text-xs px-3 py-1 rounded-full surface-2 border border-app">Business</span>
           </div>
-          <h3 class="mt-4 text-lg font-semibold">Online Meeting</h3>
-          <p class="mt-2 text-sm text-slate-300">Secure virtual meetings at scale.</p>
-          <a class="mt-4 inline-block text-sm text-blue-300 group-hover:text-blue-200" href="#">Learn more -></a>
+          <p class="mt-2 text-sm text-muted">Secure virtual meetings at scale.</p>
+          <a class="mt-4 inline-block text-sm text-[var(--primary)]" href="#">Learn more -></a>
         </div>
-        <div class="service-card group p-6 rounded-2xl bg-white/5 border border-white/10 hover:border-blue-400/60 hover:-translate-y-1 hover:shadow-xl hover:shadow-blue-500/10 transition-all" data-category="Travel" data-title="Travel & Hospitality">
-          <div class="flex items-center justify-between">
-            <svg viewBox="0 0 40 40" class="w-10 h-10 transition-transform group-hover:-translate-y-1">
-              <rect x="2" y="2" width="36" height="36" rx="10" fill="rgba(59,130,246,0.3)" />
-              <text x="20" y="24" text-anchor="middle" font-size="12" fill="#e0f2fe" font-family="Plus Jakarta Sans, sans-serif">TH</text>
-            </svg>
-            <span class="text-xs px-3 py-1 rounded-full bg-blue-500/20 text-blue-200">Travel</span>
+        <div class="service-card card surface border border-app rounded-3xl p-6" data-category="Travel" data-title="Travel & Hospitality">
+          <img class="w-full h-36 object-cover rounded-2xl" src="https://images.unsplash.com/photo-1488646953014-85cb44e25828?auto=format&fit=crop&w=800&q=80" alt="Travel hospitality" loading="lazy" />
+          <div class="mt-4 flex items-center justify-between">
+            <div class="flex items-center gap-3">
+              <span class="w-9 h-9 rounded-xl bg-[var(--primary)] text-white text-xs font-semibold flex items-center justify-center">TH</span>
+              <h3 class="text-lg font-semibold">Travel & Hospitality</h3>
+            </div>
+            <span class="text-xs px-3 py-1 rounded-full surface-2 border border-app">Travel</span>
           </div>
-          <h3 class="mt-4 text-lg font-semibold">Travel & Hospitality</h3>
-          <p class="mt-2 text-sm text-slate-300">Complete travel solutions.</p>
-          <a class="mt-4 inline-block text-sm text-blue-300 group-hover:text-blue-200" href="#">Learn more -></a>
+          <p class="mt-2 text-sm text-muted">Complete travel solutions.</p>
+          <a class="mt-4 inline-block text-sm text-[var(--primary)]" href="#">Learn more -></a>
         </div>
-        <div class="service-card group p-6 rounded-2xl bg-white/5 border border-white/10 hover:border-blue-400/60 hover:-translate-y-1 hover:shadow-xl hover:shadow-blue-500/10 transition-all" data-category="Utilities" data-title="Mobile Recharge">
-          <div class="flex items-center justify-between">
-            <svg viewBox="0 0 40 40" class="w-10 h-10 transition-transform group-hover:-translate-y-1">
-              <rect x="2" y="2" width="36" height="36" rx="10" fill="rgba(59,130,246,0.3)" />
-              <text x="20" y="24" text-anchor="middle" font-size="12" fill="#e0f2fe" font-family="Plus Jakarta Sans, sans-serif">MR</text>
-            </svg>
-            <span class="text-xs px-3 py-1 rounded-full bg-blue-500/20 text-blue-200">Utilities</span>
+        <div class="service-card card surface border border-app rounded-3xl p-6" data-category="Utilities" data-title="Mobile Recharge">
+          <img class="w-full h-36 object-cover rounded-2xl" src="https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?auto=format&fit=crop&w=800&q=80" alt="Mobile recharge" loading="lazy" />
+          <div class="mt-4 flex items-center justify-between">
+            <div class="flex items-center gap-3">
+              <span class="w-9 h-9 rounded-xl bg-[var(--primary)] text-white text-xs font-semibold flex items-center justify-center">MR</span>
+              <h3 class="text-lg font-semibold">Mobile Recharge</h3>
+            </div>
+            <span class="text-xs px-3 py-1 rounded-full surface-2 border border-app">Utilities</span>
           </div>
-          <h3 class="mt-4 text-lg font-semibold">Mobile Recharge</h3>
-          <p class="mt-2 text-sm text-slate-300">Instant top-ups and plans.</p>
-          <a class="mt-4 inline-block text-sm text-blue-300 group-hover:text-blue-200" href="#">Learn more -></a>
+          <p class="mt-2 text-sm text-muted">Instant top-ups and plans.</p>
+          <a class="mt-4 inline-block text-sm text-[var(--primary)]" href="#">Learn more -></a>
         </div>
-        <div class="service-card group p-6 rounded-2xl bg-white/5 border border-white/10 hover:border-blue-400/60 hover:-translate-y-1 hover:shadow-xl hover:shadow-blue-500/10 transition-all" data-category="Utilities" data-title="Subscriptions">
-          <div class="flex items-center justify-between">
-            <svg viewBox="0 0 40 40" class="w-10 h-10 transition-transform group-hover:-translate-y-1">
-              <rect x="2" y="2" width="36" height="36" rx="10" fill="rgba(59,130,246,0.3)" />
-              <text x="20" y="24" text-anchor="middle" font-size="12" fill="#e0f2fe" font-family="Plus Jakarta Sans, sans-serif">SB</text>
-            </svg>
-            <span class="text-xs px-3 py-1 rounded-full bg-blue-500/20 text-blue-200">Utilities</span>
+        <div class="service-card card surface border border-app rounded-3xl p-6" data-category="Utilities" data-title="Subscriptions">
+          <img class="w-full h-36 object-cover rounded-2xl" src="https://images.unsplash.com/photo-1512436991641-6745cdb1723f?auto=format&fit=crop&w=800&q=80" alt="Subscription management" loading="lazy" />
+          <div class="mt-4 flex items-center justify-between">
+            <div class="flex items-center gap-3">
+              <span class="w-9 h-9 rounded-xl bg-[var(--primary)] text-white text-xs font-semibold flex items-center justify-center">SB</span>
+              <h3 class="text-lg font-semibold">Subscriptions</h3>
+            </div>
+            <span class="text-xs px-3 py-1 rounded-full surface-2 border border-app">Utilities</span>
           </div>
-          <h3 class="mt-4 text-lg font-semibold">Subscriptions</h3>
-          <p class="mt-2 text-sm text-slate-300">Renew and manage subscriptions.</p>
-          <a class="mt-4 inline-block text-sm text-blue-300 group-hover:text-blue-200" href="#">Learn more -></a>
+          <p class="mt-2 text-sm text-muted">Manage and renew subscriptions.</p>
+          <a class="mt-4 inline-block text-sm text-[var(--primary)]" href="#">Learn more -></a>
         </div>
-        <div class="service-card group p-6 rounded-2xl bg-white/5 border border-white/10 hover:border-blue-400/60 hover:-translate-y-1 hover:shadow-xl hover:shadow-blue-500/10 transition-all" data-category="Marketing" data-title="WhatsApp Marketing">
-          <div class="flex items-center justify-between">
-            <svg viewBox="0 0 40 40" class="w-10 h-10 transition-transform group-hover:-translate-y-1">
-              <rect x="2" y="2" width="36" height="36" rx="10" fill="rgba(59,130,246,0.3)" />
-              <text x="20" y="24" text-anchor="middle" font-size="12" fill="#e0f2fe" font-family="Plus Jakarta Sans, sans-serif">WM</text>
-            </svg>
-            <span class="text-xs px-3 py-1 rounded-full bg-blue-500/20 text-blue-200">Marketing</span>
+        <div class="service-card card surface border border-app rounded-3xl p-6" data-category="Business" data-title="WhatsApp Marketing">
+          <img class="w-full h-36 object-cover rounded-2xl" src="https://images.unsplash.com/photo-1551434678-e076c223a692?auto=format&fit=crop&w=800&q=80" alt="Marketing analytics" loading="lazy" />
+          <div class="mt-4 flex items-center justify-between">
+            <div class="flex items-center gap-3">
+              <span class="w-9 h-9 rounded-xl bg-[var(--primary)] text-white text-xs font-semibold flex items-center justify-center">WM</span>
+              <h3 class="text-lg font-semibold">WhatsApp Marketing</h3>
+            </div>
+            <span class="text-xs px-3 py-1 rounded-full surface-2 border border-app">Business</span>
           </div>
-          <h3 class="mt-4 text-lg font-semibold">WhatsApp Marketing</h3>
-          <p class="mt-2 text-sm text-slate-300">Targeted campaigns that convert.</p>
-          <a class="mt-4 inline-block text-sm text-blue-300 group-hover:text-blue-200" href="#">Learn more -></a>
+          <p class="mt-2 text-sm text-muted">Targeted campaigns that convert.</p>
+          <a class="mt-4 inline-block text-sm text-[var(--primary)]" href="#">Learn more -></a>
         </div>
-        <div class="service-card group p-6 rounded-2xl bg-white/5 border border-white/10 hover:border-blue-400/60 hover:-translate-y-1 hover:shadow-xl hover:shadow-blue-500/10 transition-all" data-category="Travel" data-title="Attraction Booking">
-          <div class="flex items-center justify-between">
-            <svg viewBox="0 0 40 40" class="w-10 h-10 transition-transform group-hover:-translate-y-1">
-              <rect x="2" y="2" width="36" height="36" rx="10" fill="rgba(59,130,246,0.3)" />
-              <text x="20" y="24" text-anchor="middle" font-size="12" fill="#e0f2fe" font-family="Plus Jakarta Sans, sans-serif">AT</text>
-            </svg>
-            <span class="text-xs px-3 py-1 rounded-full bg-blue-500/20 text-blue-200">Travel</span>
+        <div class="service-card card surface border border-app rounded-3xl p-6" data-category="Travel" data-title="Attraction Booking">
+          <img class="w-full h-36 object-cover rounded-2xl" src="https://images.unsplash.com/photo-1491553895911-0055eca6402d?auto=format&fit=crop&w=800&q=80" alt="Attraction booking" loading="lazy" />
+          <div class="mt-4 flex items-center justify-between">
+            <div class="flex items-center gap-3">
+              <span class="w-9 h-9 rounded-xl bg-[var(--primary)] text-white text-xs font-semibold flex items-center justify-center">AB</span>
+              <h3 class="text-lg font-semibold">Attraction Booking</h3>
+            </div>
+            <span class="text-xs px-3 py-1 rounded-full surface-2 border border-app">Travel</span>
           </div>
-          <h3 class="mt-4 text-lg font-semibold">Attraction Booking</h3>
-          <p class="mt-2 text-sm text-slate-300">Experiences and activities.</p>
-          <a class="mt-4 inline-block text-sm text-blue-300 group-hover:text-blue-200" href="#">Learn more -></a>
+          <p class="mt-2 text-sm text-muted">Experiences and activities.</p>
+          <a class="mt-4 inline-block text-sm text-[var(--primary)]" href="#">Learn more -></a>
         </div>
-        <div class="service-card group p-6 rounded-2xl bg-white/5 border border-white/10 hover:border-blue-400/60 hover:-translate-y-1 hover:shadow-xl hover:shadow-blue-500/10 transition-all" data-category="Marketplace" data-title="Marketplace">
-          <div class="flex items-center justify-between">
-            <svg viewBox="0 0 40 40" class="w-10 h-10 transition-transform group-hover:-translate-y-1">
-              <rect x="2" y="2" width="36" height="36" rx="10" fill="rgba(59,130,246,0.3)" />
-              <text x="20" y="24" text-anchor="middle" font-size="12" fill="#e0f2fe" font-family="Plus Jakarta Sans, sans-serif">MP</text>
-            </svg>
-            <span class="text-xs px-3 py-1 rounded-full bg-blue-500/20 text-blue-200">Marketplace</span>
+        <div class="service-card card surface border border-app rounded-3xl p-6" data-category="Marketplace" data-title="Marketplace">
+          <img class="w-full h-36 object-cover rounded-2xl" src="https://images.unsplash.com/photo-1521335629791-ce4aec67dd47?auto=format&fit=crop&w=800&q=80" alt="Marketplace shopping" loading="lazy" />
+          <div class="mt-4 flex items-center justify-between">
+            <div class="flex items-center gap-3">
+              <span class="w-9 h-9 rounded-xl bg-[var(--primary)] text-white text-xs font-semibold flex items-center justify-center">MP</span>
+              <h3 class="text-lg font-semibold">Marketplace</h3>
+            </div>
+            <span class="text-xs px-3 py-1 rounded-full surface-2 border border-app">Marketplace</span>
           </div>
-          <h3 class="mt-4 text-lg font-semibold">Marketplace</h3>
-          <p class="mt-2 text-sm text-slate-300">Buy and sell items securely.</p>
-          <a class="mt-4 inline-block text-sm text-blue-300 group-hover:text-blue-200" href="#">Learn more -></a>
+          <p class="mt-2 text-sm text-muted">Buy and sell items securely.</p>
+          <a class="mt-4 inline-block text-sm text-[var(--primary)]" href="#">Learn more -></a>
         </div>
       </div>
-      <div id="searchResults" class="mt-8 hidden p-4 rounded-2xl bg-white/5 border border-white/10 text-sm text-slate-300"></div>
+      <div id="searchResults" class="mt-8 hidden p-4 rounded-2xl surface border border-app text-sm text-muted"></div>
     </div>
   </section>
 
   <!-- How it Works -->
-  <section id="how" class="py-16 bg-slate-900">
+  <section id="how" class="py-16 bg-app">
     <div class="max-w-6xl mx-auto px-6">
-      <h2 class="font-display text-3xl">How it Works</h2>
-      <p class="mt-3 text-slate-300 max-w-xl">Search, book, and manage everything in one secure dashboard.</p>
-      <div class="mt-10 grid md:grid-cols-3 gap-6 relative">
-        <div class="p-6 rounded-2xl bg-white/5 border border-white/10">
-          <div class="w-10 h-10 rounded-xl bg-blue-500/20 flex items-center justify-center text-xs">SR</div>
+      <h2 class="text-3xl font-semibold">How it Works</h2>
+      <p class="mt-3 text-muted max-w-xl">Search, book, and manage everything in one secure dashboard.</p>
+      <div class="mt-10 grid md:grid-cols-3 gap-6">
+        <div class="surface border border-app rounded-3xl p-6 reveal" data-reveal>
+          <div class="w-12 h-12 rounded-2xl bg-[var(--primary)] text-white flex items-center justify-center">01</div>
           <h3 class="mt-4 text-lg font-semibold">Search</h3>
-          <p class="mt-2 text-sm text-slate-300">Find services across categories with smart filters.</p>
+          <p class="mt-2 text-sm text-muted">Find services across categories with smart filters.</p>
         </div>
-        <div class="p-6 rounded-2xl bg-white/5 border border-white/10">
-          <div class="w-10 h-10 rounded-xl bg-blue-500/20 flex items-center justify-center text-xs">BO</div>
+        <div class="surface border border-app rounded-3xl p-6 reveal" data-reveal>
+          <div class="w-12 h-12 rounded-2xl bg-[var(--primary)] text-white flex items-center justify-center">02</div>
           <h3 class="mt-4 text-lg font-semibold">Book/Order</h3>
-          <p class="mt-2 text-sm text-slate-300">Instant checkout with secure payment options.</p>
+          <p class="mt-2 text-sm text-muted">Instant checkout with secure payment options.</p>
         </div>
-        <div class="p-6 rounded-2xl bg-white/5 border border-white/10">
-          <div class="w-10 h-10 rounded-xl bg-blue-500/20 flex items-center justify-center text-xs">TM</div>
+        <div class="surface border border-app rounded-3xl p-6 reveal" data-reveal>
+          <div class="w-12 h-12 rounded-2xl bg-[var(--primary)] text-white flex items-center justify-center">03</div>
           <h3 class="mt-4 text-lg font-semibold">Track/Manage</h3>
-          <p class="mt-2 text-sm text-slate-300">Real-time tracking and unified management.</p>
-        </div>
-        <div class="absolute left-0 right-0 -bottom-3 h-1 bg-white/10 rounded-full overflow-hidden">
-          <div id="progressBar" class="h-full w-0 bg-gradient-to-r from-blue-500 to-cyan-400"></div>
+          <p class="mt-2 text-sm text-muted">Real-time tracking and unified management.</p>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- Highlights -->
-  <section class="py-16 bg-slate-950">
-    <div class="max-w-7xl mx-auto px-6 space-y-12">
+  <!-- Feature Bands -->
+  <section class="py-16 bg-app">
+    <div class="max-w-7xl mx-auto px-6 space-y-16">
       <div class="grid lg:grid-cols-2 gap-10 items-center">
         <div>
-          <h3 class="font-display text-2xl">Delivery Suite</h3>
-          <p class="mt-3 text-slate-300">Groceries and food delivered fast with live ETA and verified stores.</p>
-          <ul class="mt-5 space-y-2 text-sm text-slate-300">
-            <li>• Nearby store fulfillment</li>
-            <li>• Freshness guarantees</li>
-            <li>• Scheduled deliveries</li>
+          <h3 class="text-2xl font-semibold">Delivery Suite</h3>
+          <p class="mt-3 text-muted">Groceries and food delivered fast with live ETA and verified stores.</p>
+          <ul class="mt-5 space-y-2 text-sm text-muted">
+            <li>- Nearby store fulfillment</li>
+            <li>- Freshness guarantees</li>
+            <li>- Scheduled deliveries</li>
           </ul>
         </div>
-        <div class="grid grid-cols-2 gap-4">
-          <div class="p-4 rounded-2xl bg-white/5 border border-white/10">Grocery Orders</div>
-          <div class="p-4 rounded-2xl bg-white/5 border border-white/10">Food Delivery</div>
-          <div class="p-4 rounded-2xl bg-white/5 border border-white/10">15-30 min ETA</div>
-          <div class="p-4 rounded-2xl bg-white/5 border border-white/10">4.9 ratings</div>
+        <div class="relative">
+          <img class="w-full h-80 object-cover rounded-3xl" src="https://images.unsplash.com/photo-1481931098730-318b6f776db0?auto=format&fit=crop&w=1200&q=80" alt="Food delivery" loading="lazy" />
+          <div class="absolute inset-0 rounded-3xl bg-gradient-to-tr from-black/40 via-transparent to-transparent"></div>
         </div>
       </div>
       <div class="grid lg:grid-cols-2 gap-10 items-center">
-        <div class="order-2 lg:order-1 grid grid-cols-2 gap-4">
-          <div class="p-4 rounded-2xl bg-white/5 border border-white/10">Flights</div>
-          <div class="p-4 rounded-2xl bg-white/5 border border-white/10">Hotels</div>
-          <div class="p-4 rounded-2xl bg-white/5 border border-white/10">Tours</div>
-          <div class="p-4 rounded-2xl bg-white/5 border border-white/10">Attractions</div>
+        <div class="order-2 lg:order-1 relative">
+          <img class="w-full h-80 object-cover rounded-3xl" src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=1200&q=80" alt="Travel planning" loading="lazy" />
+          <div class="absolute inset-0 rounded-3xl bg-gradient-to-tr from-black/40 via-transparent to-transparent"></div>
         </div>
         <div class="order-1 lg:order-2">
-          <h3 class="font-display text-2xl">Travel Suite</h3>
-          <p class="mt-3 text-slate-300">Compare flights, hotels, and experiences with transparent pricing.</p>
-          <ul class="mt-5 space-y-2 text-sm text-slate-300">
-            <li>• Bundled savings and itineraries</li>
-            <li>• Secure bookings in minutes</li>
-            <li>• Multi-city planning</li>
+          <h3 class="text-2xl font-semibold">Travel Suite</h3>
+          <p class="mt-3 text-muted">Compare flights, hotels, and attractions with transparent pricing.</p>
+          <ul class="mt-5 space-y-2 text-sm text-muted">
+            <li>- Bundled savings and itineraries</li>
+            <li>- Secure bookings in minutes</li>
+            <li>- Multi-city planning</li>
           </ul>
         </div>
       </div>
       <div class="grid lg:grid-cols-2 gap-10 items-center">
         <div>
-          <h3 class="font-display text-2xl">Business Suite</h3>
-          <p class="mt-3 text-slate-300">Scale operations with AI generation, marketing automation, and secure meetings.</p>
-          <ul class="mt-5 space-y-2 text-sm text-slate-300">
-            <li>• AI-powered content workflows</li>
-            <li>• WhatsApp campaign management</li>
-            <li>• Encrypted meeting rooms</li>
+          <h3 class="text-2xl font-semibold">Business Suite</h3>
+          <p class="mt-3 text-muted">Scale operations with AI tools, marketing automation, and secure meetings.</p>
+          <ul class="mt-5 space-y-2 text-sm text-muted">
+            <li>- AI-powered content workflows</li>
+            <li>- WhatsApp campaign management</li>
+            <li>- Encrypted meeting rooms</li>
           </ul>
         </div>
-        <div class="grid grid-cols-2 gap-4">
-          <div class="p-4 rounded-2xl bg-white/5 border border-white/10">AI Studio</div>
-          <div class="p-4 rounded-2xl bg-white/5 border border-white/10">WhatsApp Marketing</div>
-          <div class="p-4 rounded-2xl bg-white/5 border border-white/10">Online Meeting</div>
-          <div class="p-4 rounded-2xl bg-white/5 border border-white/10">Analytics</div>
+        <div class="relative">
+          <img class="w-full h-80 object-cover rounded-3xl" src="https://images.unsplash.com/photo-1551434678-e076c223a692?auto=format&fit=crop&w=1200&q=80" alt="Business tools" loading="lazy" />
+          <div class="absolute inset-0 rounded-3xl bg-gradient-to-tr from-black/40 via-transparent to-transparent"></div>
         </div>
       </div>
     </div>
   </section>
+  <!-- Marketplace Spotlight -->
+  <section class="py-16 bg-app">
+    <div class="max-w-7xl mx-auto px-6">
+      <div class="surface border border-app rounded-3xl p-10 grid lg:grid-cols-2 gap-10 items-center">
+        <div>
+          <h3 class="text-2xl font-semibold">Marketplace Spotlight</h3>
+          <p class="mt-3 text-muted">Buy and sell items with verified listings, secure payments, and local pickup options.</p>
+          <div class="mt-6 flex flex-wrap gap-3 text-xs text-muted">
+            <span class="px-3 py-1 rounded-full surface-2 border border-app">Verified Sellers</span>
+            <span class="px-3 py-1 rounded-full surface-2 border border-app">Trusted Payments</span>
+            <span class="px-3 py-1 rounded-full surface-2 border border-app">Local Pickup</span>
+          </div>
+        </div>
+        <div class="relative">
+          <img class="w-full h-72 object-cover rounded-3xl" src="https://images.unsplash.com/photo-1483985988355-763728e1935b?auto=format&fit=crop&w=1200&q=80" alt="Marketplace shopping" loading="lazy" />
+          <div class="absolute inset-0 rounded-3xl bg-gradient-to-tr from-black/40 via-transparent to-transparent"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <!-- Social Proof -->
-  <section id="reviews" class="py-16 bg-slate-900">
+  <section id="reviews" class="py-16 bg-app">
     <div class="max-w-7xl mx-auto px-6">
       <div class="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-6">
         <div>
-          <h2 class="font-display text-3xl">Trusted Nationwide</h2>
-          <p class="mt-3 text-slate-300">4.8/5 average rating from 120k+ customers.</p>
+          <h2 class="text-3xl font-semibold">Trusted Nationwide</h2>
+          <p class="mt-3 text-muted">4.8/5 average rating from 120k+ customers.</p>
         </div>
-        <div class="flex gap-3 text-xs text-slate-300">
-          <div class="px-3 py-2 rounded-full bg-white/10">NYC</div>
-          <div class="px-3 py-2 rounded-full bg-white/10">LA</div>
-          <div class="px-3 py-2 rounded-full bg-white/10">Chicago</div>
-          <div class="px-3 py-2 rounded-full bg-white/10">Austin</div>
-          <div class="px-3 py-2 rounded-full bg-white/10">Miami</div>
+        <div class="flex gap-3 text-xs text-muted">
+          <div class="px-3 py-2 rounded-full surface border border-app">NYC</div>
+          <div class="px-3 py-2 rounded-full surface border border-app">LA</div>
+          <div class="px-3 py-2 rounded-full surface border border-app">Chicago</div>
+          <div class="px-3 py-2 rounded-full surface border border-app">Austin</div>
+          <div class="px-3 py-2 rounded-full surface border border-app">Miami</div>
         </div>
       </div>
-      <div class="mt-8 grid grid-cols-2 md:grid-cols-5 gap-4 text-xs text-slate-400">
-        <div class="px-4 py-3 rounded-xl bg-white/5 border border-white/10">UrbanMart</div>
-        <div class="px-4 py-3 rounded-xl bg-white/5 border border-white/10">Skyline Air</div>
-        <div class="px-4 py-3 rounded-xl bg-white/5 border border-white/10">MetroStay</div>
-        <div class="px-4 py-3 rounded-xl bg-white/5 border border-white/10">EventHive</div>
-        <div class="px-4 py-3 rounded-xl bg-white/5 border border-white/10">QuickServe</div>
+      <div class="mt-8 grid grid-cols-2 md:grid-cols-5 gap-4 text-xs text-muted">
+        <div class="px-4 py-3 rounded-xl surface border border-app">UrbanMart</div>
+        <div class="px-4 py-3 rounded-xl surface border border-app">Skyline Air</div>
+        <div class="px-4 py-3 rounded-xl surface border border-app">MetroStay</div>
+        <div class="px-4 py-3 rounded-xl surface border border-app">EventHive</div>
+        <div class="px-4 py-3 rounded-xl surface border border-app">QuickServe</div>
       </div>
       <div class="mt-10">
-        <div class="overflow-hidden">
+        <div id="testimonialViewport" class="overflow-hidden">
           <div id="testimonialTrack" class="flex gap-6 transition-transform duration-500">
-            <div class="testimonial-card min-w-[280px] md:min-w-[360px] p-6 rounded-2xl bg-white/5 border border-white/10">
-              <p class="text-sm text-slate-300">"Flights and hotels in one go. Booked a full trip in 6 minutes."</p>
+            <div class="surface border border-app rounded-3xl p-6 min-w-[280px] md:min-w-[360px]">
+              <p class="text-sm text-muted">"Flights and hotels in one go. Booked a full trip in 6 minutes."</p>
               <div class="mt-4 text-sm font-semibold">Maya L. - NYC</div>
             </div>
-            <div class="testimonial-card min-w-[280px] md:min-w-[360px] p-6 rounded-2xl bg-white/5 border border-white/10">
-              <p class="text-sm text-slate-300">"Grocery delivery is always on time and support is quick."</p>
+            <div class="surface border border-app rounded-3xl p-6 min-w-[280px] md:min-w-[360px]">
+              <p class="text-sm text-muted">"Grocery delivery is always on time and support is quick."</p>
               <div class="mt-4 text-sm font-semibold">Samir K. - Chicago</div>
             </div>
-            <div class="testimonial-card min-w-[280px] md:min-w-[360px] p-6 rounded-2xl bg-white/5 border border-white/10">
-              <p class="text-sm text-slate-300">"WhatsApp marketing doubled our event turnout."</p>
+            <div class="surface border border-app rounded-3xl p-6 min-w-[280px] md:min-w-[360px]">
+              <p class="text-sm text-muted">"WhatsApp marketing doubled our event turnout."</p>
               <div class="mt-4 text-sm font-semibold">Renee P. - Austin</div>
             </div>
-            <div class="testimonial-card min-w-[280px] md:min-w-[360px] p-6 rounded-2xl bg-white/5 border border-white/10">
-              <p class="text-sm text-slate-300">"The AI tools saved hours of content work."</p>
+            <div class="surface border border-app rounded-3xl p-6 min-w-[280px] md:min-w-[360px]">
+              <p class="text-sm text-muted">"The AI tools saved hours of content work."</p>
               <div class="mt-4 text-sm font-semibold">Carlos M. - LA</div>
             </div>
-            <div class="testimonial-card min-w-[280px] md:min-w-[360px] p-6 rounded-2xl bg-white/5 border border-white/10">
-              <p class="text-sm text-slate-300">"Event tickets with transparent fees. Smooth checkout."</p>
+            <div class="surface border border-app rounded-3xl p-6 min-w-[280px] md:min-w-[360px]">
+              <p class="text-sm text-muted">"Event tickets with transparent fees. Smooth checkout."</p>
               <div class="mt-4 text-sm font-semibold">Jenna R. - Miami</div>
             </div>
-            <div class="testimonial-card min-w-[280px] md:min-w-[360px] p-6 rounded-2xl bg-white/5 border border-white/10">
-              <p class="text-sm text-slate-300">"We manage subscriptions and meetings all in one place."</p>
+            <div class="surface border border-app rounded-3xl p-6 min-w-[280px] md:min-w-[360px]">
+              <p class="text-sm text-muted">"We manage subscriptions and meetings all in one place."</p>
               <div class="mt-4 text-sm font-semibold">Oliver T. - NYC</div>
             </div>
           </div>
         </div>
         <div class="mt-6 flex justify-center gap-3">
-          <button id="prevTestimonial" class="px-4 py-2 rounded-full border border-white/20">Prev</button>
-          <button id="nextTestimonial" class="px-4 py-2 rounded-full border border-white/20">Next</button>
+          <button id="prevTestimonial" class="px-4 py-2 rounded-full border border-app surface-2">Prev</button>
+          <button id="nextTestimonial" class="px-4 py-2 rounded-full border border-app surface-2">Next</button>
         </div>
       </div>
     </div>
   </section>
 
   <!-- Pricing -->
-  <section id="pricing" class="py-16 bg-slate-950">
+  <section id="pricing" class="py-16 bg-app">
     <div class="max-w-6xl mx-auto px-6">
       <div class="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-6">
         <div>
-          <h2 class="font-display text-3xl">Pricing</h2>
-          <p class="mt-3 text-slate-300">Flexible plans for individuals and growing teams.</p>
+          <h2 class="text-3xl font-semibold">Pricing</h2>
+          <p class="mt-3 text-muted">Flexible plans for individuals and growing teams.</p>
         </div>
-        <div class="flex items-center gap-3 text-sm">
+        <div class="flex items-center gap-3 text-sm text-muted">
           <span>Monthly</span>
-          <button id="priceToggle" class="relative w-14 h-7 rounded-full bg-white/20">
-            <span id="toggleDot" class="absolute top-1 left-1 w-5 h-5 rounded-full bg-white transition-all"></span>
+          <button id="priceToggle" aria-label="Toggle billing" class="relative w-14 h-7 rounded-full surface-2 border border-app">
+            <span id="toggleDot" class="absolute top-1 left-1 w-5 h-5 rounded-full bg-[var(--primary)] transition-all"></span>
           </button>
-          <span>Yearly <span class="text-blue-300">(Save 20%)</span></span>
+          <span>Yearly <span class="text-[var(--primary)]">(Save 20%)</span></span>
         </div>
       </div>
       <div class="mt-10 grid md:grid-cols-3 gap-6">
-        <div class="p-6 rounded-2xl bg-white/5 border border-white/10">
+        <div class="surface border border-app rounded-3xl p-6">
           <h3 class="text-xl font-semibold">Starter</h3>
-          <p class="mt-2 text-sm text-slate-300">Essential services for individuals.</p>
-          <div class="mt-6 text-4xl font-display transition-all" data-price="19">$19</div>
-          <div class="text-xs text-slate-400">per month</div>
-          <ul class="mt-6 space-y-2 text-sm text-slate-300">
-            <li>• Delivery and marketplace access</li>
-            <li>• Basic travel bookings</li>
-            <li>• Standard support</li>
+          <p class="mt-2 text-sm text-muted">Essential services for individuals.</p>
+          <div class="mt-6 text-4xl font-semibold price" data-monthly="19" data-yearly="15">$19</div>
+          <div class="text-xs text-muted">per month</div>
+          <ul class="mt-6 space-y-2 text-sm text-muted">
+            <li>- Delivery and marketplace access</li>
+            <li>- Basic travel bookings</li>
+            <li>- Standard support</li>
           </ul>
-          <button class="mt-6 w-full py-3 rounded-full border border-white/20">Choose Starter</button>
+          <button class="mt-6 w-full py-3 rounded-full border border-app surface-2">Choose Starter</button>
         </div>
-        <div class="p-6 rounded-2xl bg-gradient-to-b from-blue-500/20 to-slate-900 border border-blue-400/60 shadow-glow relative">
-          <div class="absolute -top-3 right-4 px-3 py-1 rounded-full bg-blue-500 text-xs text-slate-900 font-semibold">Most Popular</div>
+        <div class="surface border border-app rounded-3xl p-6 glow relative">
+          <div class="absolute -top-3 right-4 px-3 py-1 rounded-full bg-[var(--primary)] text-white text-xs font-semibold">Most Popular</div>
           <h3 class="text-xl font-semibold">Pro</h3>
-          <p class="mt-2 text-sm text-slate-200">For power users and freelancers.</p>
-          <div class="mt-6 text-4xl font-display transition-all" data-price="49">$49</div>
-          <div class="text-xs text-slate-200">per month</div>
-          <ul class="mt-6 space-y-2 text-sm text-slate-200">
-            <li>• Includes WhatsApp Marketing</li>
-            <li>• AI Generation tools</li>
-            <li>• Priority travel support</li>
+          <p class="mt-2 text-sm text-muted">For power users and freelancers.</p>
+          <div class="mt-6 text-4xl font-semibold price" data-monthly="49" data-yearly="39">$49</div>
+          <div class="text-xs text-muted">per month</div>
+          <ul class="mt-6 space-y-2 text-sm text-muted">
+            <li>- Includes WhatsApp Marketing</li>
+            <li>- AI Generation tools</li>
+            <li>- Priority travel support</li>
           </ul>
-          <button class="mt-6 w-full py-3 rounded-full bg-white text-slate-900 font-semibold">Choose Pro</button>
+          <button class="mt-6 w-full py-3 rounded-full btn-primary font-semibold">Choose Pro</button>
         </div>
-        <div class="p-6 rounded-2xl bg-white/5 border border-white/10">
+        <div class="surface border border-app rounded-3xl p-6">
           <h3 class="text-xl font-semibold">Business</h3>
-          <p class="mt-2 text-sm text-slate-300">For teams and multi-location ops.</p>
-          <div class="mt-6 text-4xl font-display transition-all" data-price="89">$89</div>
-          <div class="text-xs text-slate-400">per month</div>
-          <ul class="mt-6 space-y-2 text-sm text-slate-300">
-            <li>• WhatsApp Marketing plus AI Studio</li>
-            <li>• Advanced analytics</li>
-            <li>• Dedicated success manager</li>
+          <p class="mt-2 text-sm text-muted">For teams and multi-location ops.</p>
+          <div class="mt-6 text-4xl font-semibold price" data-monthly="89" data-yearly="71">$89</div>
+          <div class="text-xs text-muted">per month</div>
+          <ul class="mt-6 space-y-2 text-sm text-muted">
+            <li>- WhatsApp Marketing plus AI Studio</li>
+            <li>- Advanced analytics</li>
+            <li>- Dedicated success manager</li>
           </ul>
-          <button class="mt-6 w-full py-3 rounded-full border border-white/20">Choose Business</button>
+          <button class="mt-6 w-full py-3 rounded-full border border-app surface-2">Choose Business</button>
         </div>
       </div>
     </div>
   </section>
+
   <!-- FAQ -->
-  <section id="faq" class="py-16 bg-slate-900">
+  <section id="faq" class="py-16 bg-app">
     <div class="max-w-5xl mx-auto px-6">
-      <h2 class="font-display text-3xl">FAQ</h2>
+      <h2 class="text-3xl font-semibold">FAQ</h2>
       <div class="mt-8 space-y-4">
-        <div class="faq-item p-5 rounded-2xl bg-white/5 border border-white/10">
+        <div class="faq-item surface border border-app rounded-3xl p-5">
           <button class="faq-question w-full flex justify-between items-center text-left">
             <span>Is it available across the USA?</span>
             <span>+</span>
           </button>
-          <div class="faq-answer hidden mt-3 text-sm text-slate-300">Yes, UniServe is live in all major US metro areas with expanding coverage.</div>
+          <div class="faq-answer hidden mt-3 text-sm text-muted">Yes, UniServe is live in all major US metro areas with expanding coverage.</div>
         </div>
-        <div class="faq-item p-5 rounded-2xl bg-white/5 border border-white/10">
+        <div class="faq-item surface border border-app rounded-3xl p-5">
           <button class="faq-question w-full flex justify-between items-center text-left">
             <span>How do refunds work?</span>
             <span>+</span>
           </button>
-          <div class="faq-answer hidden mt-3 text-sm text-slate-300">Refunds are processed to the original payment method within 5 to 7 business days.</div>
+          <div class="faq-answer hidden mt-3 text-sm text-muted">Refunds are processed to the original payment method within 5 to 7 business days.</div>
         </div>
-        <div class="faq-item p-5 rounded-2xl bg-white/5 border border-white/10">
+        <div class="faq-item surface border border-app rounded-3xl p-5">
           <button class="faq-question w-full flex justify-between items-center text-left">
             <span>Do you store payment info?</span>
             <span>+</span>
           </button>
-          <div class="faq-answer hidden mt-3 text-sm text-slate-300">We use tokenized payments and do not store full card details.</div>
+          <div class="faq-answer hidden mt-3 text-sm text-muted">We use tokenized payments and do not store full card details.</div>
         </div>
-        <div class="faq-item p-5 rounded-2xl bg-white/5 border border-white/10">
+        <div class="faq-item surface border border-app rounded-3xl p-5">
           <button class="faq-question w-full flex justify-between items-center text-left">
             <span>WhatsApp marketing compliance?</span>
             <span>+</span>
           </button>
-          <div class="faq-answer hidden mt-3 text-sm text-slate-300">We follow opt-in policies and compliance guidelines for message campaigns.</div>
+          <div class="faq-answer hidden mt-3 text-sm text-muted">We follow opt-in policies and compliance guidelines for message campaigns.</div>
         </div>
-        <div class="faq-item p-5 rounded-2xl bg-white/5 border border-white/10">
+        <div class="faq-item surface border border-app rounded-3xl p-5">
           <button class="faq-question w-full flex justify-between items-center text-left">
             <span>Can I sell on marketplace?</span>
             <span>+</span>
           </button>
-          <div class="faq-answer hidden mt-3 text-sm text-slate-300">Yes. Create a seller profile and list products with verification.</div>
+          <div class="faq-answer hidden mt-3 text-sm text-muted">Yes. Create a seller profile and list products with verification.</div>
         </div>
-        <div class="faq-item p-5 rounded-2xl bg-white/5 border border-white/10">
+        <div class="faq-item surface border border-app rounded-3xl p-5">
           <button class="faq-question w-full flex justify-between items-center text-left">
             <span>Are providers verified?</span>
             <span>+</span>
           </button>
-          <div class="faq-answer hidden mt-3 text-sm text-slate-300">All providers pass background checks and quality scoring.</div>
+          <div class="faq-answer hidden mt-3 text-sm text-muted">All providers pass background checks and quality scoring.</div>
         </div>
-        <div class="faq-item p-5 rounded-2xl bg-white/5 border border-white/10">
+        <div class="faq-item surface border border-app rounded-3xl p-5">
           <button class="faq-question w-full flex justify-between items-center text-left">
             <span>How do subscriptions renew?</span>
             <span>+</span>
           </button>
-          <div class="faq-answer hidden mt-3 text-sm text-slate-300">Manage renewals in your dashboard with reminders and auto-pay options.</div>
+          <div class="faq-answer hidden mt-3 text-sm text-muted">Manage renewals in your dashboard with reminders and auto-pay options.</div>
         </div>
-        <div class="faq-item p-5 rounded-2xl bg-white/5 border border-white/10">
+        <div class="faq-item surface border border-app rounded-3xl p-5">
           <button class="faq-question w-full flex justify-between items-center text-left">
             <span>Do you offer business onboarding?</span>
             <span>+</span>
           </button>
-          <div class="faq-answer hidden mt-3 text-sm text-slate-300">Yes, our team helps with setup, integrations, and training.</div>
+          <div class="faq-answer hidden mt-3 text-sm text-muted">Yes, our team helps with setup, integrations, and training.</div>
         </div>
       </div>
     </div>
   </section>
 
   <!-- Footer -->
-  <footer class="py-16 bg-slate-950 border-t border-white/10">
+  <footer class="py-16 bg-app border-t border-app">
     <div class="max-w-7xl mx-auto px-6 grid lg:grid-cols-5 gap-10">
       <div class="lg:col-span-2">
         <div class="flex items-center gap-3">
-          <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-blue-500 to-cyan-400 flex items-center justify-center font-display text-lg">U</div>
-          <span class="font-display text-xl">UniServe</span>
+          <div class="w-10 h-10 rounded-2xl bg-gradient-to-br from-[var(--primary)] to-[var(--primary2)] text-slate-900 flex items-center justify-center font-semibold">U</div>
+          <span class="text-xl font-semibold">UniServe</span>
         </div>
-        <p class="mt-4 text-sm text-slate-300 max-w-sm">All-in-one services for travel, delivery, payments, and business operations across the USA.</p>
+        <p class="mt-4 text-sm text-muted max-w-sm">All-in-one services for travel, delivery, payments, and business operations across the USA.</p>
         <div class="mt-6 flex gap-3">
-          <button class="px-4 py-2 rounded-full border border-white/20">App Store</button>
-          <button class="px-4 py-2 rounded-full border border-white/20">Google Play</button>
+          <button class="px-4 py-2 rounded-full border border-app surface-2">App Store</button>
+          <button class="px-4 py-2 rounded-full border border-app surface-2">Google Play</button>
         </div>
       </div>
       <div>
         <h4 class="font-semibold">Company</h4>
-        <ul class="mt-3 space-y-2 text-sm text-slate-300">
+        <ul class="mt-3 space-y-2 text-sm text-muted">
           <li>About</li>
           <li>Careers</li>
           <li>Partners</li>
@@ -652,16 +712,16 @@
       </div>
       <div>
         <h4 class="font-semibold">Services</h4>
-        <ul class="mt-3 space-y-2 text-sm text-slate-300">
+        <ul class="mt-3 space-y-2 text-sm text-muted">
           <li>Travel</li>
           <li>Delivery</li>
-          <li>Marketing</li>
+          <li>Business</li>
           <li>Marketplace</li>
         </ul>
       </div>
       <div>
         <h4 class="font-semibold">Support</h4>
-        <ul class="mt-3 space-y-2 text-sm text-slate-300">
+        <ul class="mt-3 space-y-2 text-sm text-muted">
           <li>Help Center</li>
           <li>Contact</li>
           <li>Status</li>
@@ -670,7 +730,7 @@
       </div>
       <div>
         <h4 class="font-semibold">Legal</h4>
-        <ul class="mt-3 space-y-2 text-sm text-slate-300">
+        <ul class="mt-3 space-y-2 text-sm text-muted">
           <li>Privacy</li>
           <li>Terms</li>
           <li>Security</li>
@@ -680,24 +740,24 @@
       <div class="lg:col-span-3">
         <h4 class="font-semibold">Newsletter</h4>
         <div class="mt-3 flex flex-col sm:flex-row gap-3">
-          <input type="email" class="flex-1 px-4 py-3 rounded-full bg-slate-900 border border-white/10 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500" placeholder="Email address" />
-          <button class="px-6 py-3 rounded-full bg-white text-slate-900 font-semibold">Subscribe</button>
+          <input type="email" class="flex-1 px-4 py-3 rounded-full surface-2 border border-app focus:outline-none focus:ring-2 focus:ring-[var(--primary)]" placeholder="Email address" />
+          <button class="px-6 py-3 rounded-full btn-primary font-semibold">Subscribe</button>
         </div>
       </div>
       <div class="lg:col-span-2 flex gap-4 items-center">
-        <span class="text-sm text-slate-400">Follow</span>
+        <span class="text-sm text-muted">Follow</span>
         <div class="flex gap-3">
-          <svg viewBox="0 0 40 40" class="w-10 h-10 transition-transform group-hover:-translate-y-1">
-            <circle cx="20" cy="20" r="18" fill="rgba(255,255,255,0.05)" stroke="rgba(255,255,255,0.15)" />
-            <text x="20" y="24" text-anchor="middle" font-size="12" fill="#e2e8f0" font-family="Plus Jakarta Sans, sans-serif">IN</text>
+          <svg viewBox="0 0 40 40" class="w-10 h-10">
+            <circle cx="20" cy="20" r="18" fill="var(--surface-2)" stroke="var(--border)" />
+            <text x="20" y="24" text-anchor="middle" font-size="12" fill="var(--text)" font-family="Inter, sans-serif">IN</text>
           </svg>
-          <svg viewBox="0 0 40 40" class="w-10 h-10 transition-transform group-hover:-translate-y-1">
-            <circle cx="20" cy="20" r="18" fill="rgba(255,255,255,0.05)" stroke="rgba(255,255,255,0.15)" />
-            <text x="20" y="24" text-anchor="middle" font-size="12" fill="#e2e8f0" font-family="Plus Jakarta Sans, sans-serif">YT</text>
+          <svg viewBox="0 0 40 40" class="w-10 h-10">
+            <circle cx="20" cy="20" r="18" fill="var(--surface-2)" stroke="var(--border)" />
+            <text x="20" y="24" text-anchor="middle" font-size="12" fill="var(--text)" font-family="Inter, sans-serif">YT</text>
           </svg>
-          <svg viewBox="0 0 40 40" class="w-10 h-10 transition-transform group-hover:-translate-y-1">
-            <circle cx="20" cy="20" r="18" fill="rgba(255,255,255,0.05)" stroke="rgba(255,255,255,0.15)" />
-            <text x="20" y="24" text-anchor="middle" font-size="12" fill="#e2e8f0" font-family="Plus Jakarta Sans, sans-serif">TW</text>
+          <svg viewBox="0 0 40 40" class="w-10 h-10">
+            <circle cx="20" cy="20" r="18" fill="var(--surface-2)" stroke="var(--border)" />
+            <text x="20" y="24" text-anchor="middle" font-size="12" fill="var(--text)" font-family="Inter, sans-serif">TW</text>
           </svg>
         </div>
       </div>
@@ -705,20 +765,50 @@
   </footer>
 
   <!-- Back to Top -->
-  <button id="backToTop" class="fixed bottom-6 right-6 hidden w-12 h-12 rounded-full bg-gradient-to-r from-blue-500 to-cyan-400 text-slate-900 font-bold shadow-glow">Top</button>
+  <button id="backToTop" class="fixed bottom-6 right-6 hidden w-12 h-12 rounded-full btn-primary font-semibold shadow-lg" aria-label="Back to top">Top</button>
 
   <script>
+    const root = document.documentElement;
+    const body = document.body;
     const navbar = document.getElementById('navbar');
     const backToTop = document.getElementById('backToTop');
     const mobileMenuBtn = document.getElementById('mobileMenuBtn');
     const mobileMenu = document.getElementById('mobileMenu');
+    const themeToggle = document.getElementById('themeToggle');
+    const themeToggleMobile = document.getElementById('themeToggleMobile');
+    const sunIcon = document.getElementById('sunIcon');
+    const moonIcon = document.getElementById('moonIcon');
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    function applyTheme(theme) {
+      root.setAttribute('data-theme', theme);
+      localStorage.setItem('theme', theme);
+      const isDark = theme === 'dark';
+      sunIcon.classList.toggle('hidden', isDark);
+      moonIcon.classList.toggle('hidden', !isDark);
+      themeToggle.setAttribute('aria-label', isDark ? 'Switch to light theme' : 'Switch to dark theme');
+      themeToggleMobile.textContent = isDark ? 'Light' : 'Dark';
+    }
+
+    const savedTheme = localStorage.getItem('theme');
+    applyTheme(savedTheme === 'dark' ? 'dark' : 'light');
+    setTimeout(() => body.classList.add('theme-transition'), 0);
+
+    themeToggle.addEventListener('click', () => {
+      const next = root.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+      applyTheme(next);
+    });
+
+    themeToggleMobile.addEventListener('click', () => {
+      const next = root.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+      applyTheme(next);
+    });
 
     window.addEventListener('scroll', () => {
       const scrolled = window.scrollY > 20;
-      navbar.classList.toggle('bg-slate-900/80', scrolled);
-      navbar.classList.toggle('backdrop-blur', scrolled);
+      navbar.classList.toggle('glass', scrolled);
       navbar.classList.toggle('shadow-lg', scrolled);
-      backToTop.classList.toggle('hidden', window.scrollY < 500);
+      backToTop.classList.toggle('hidden', window.scrollY < 600);
     });
 
     mobileMenuBtn.addEventListener('click', () => {
@@ -726,32 +816,41 @@
     });
 
     backToTop.addEventListener('click', () => {
-      window.scrollTo({ top: 0, behavior: 'smooth' });
+      window.scrollTo({ top: 0, behavior: prefersReducedMotion ? 'auto' : 'smooth' });
     });
 
-    const placeholders = ['Search flights...', 'Order groceries...', 'Book a plumber...', 'Find hotels...', 'Run WhatsApp campaigns...'];
+    const placeholders = [
+      'Search flights...',
+      'Order groceries...',
+      'Book home services...',
+      'Run WhatsApp campaigns...'
+    ];
     let placeholderIndex = 0;
     const searchInput = document.getElementById('searchInput');
-    setInterval(() => {
-      placeholderIndex = (placeholderIndex + 1) % placeholders.length;
-      searchInput.placeholder = placeholders[placeholderIndex];
-    }, 2500);
+
+    if (!prefersReducedMotion) {
+      setInterval(() => {
+        placeholderIndex = (placeholderIndex + 1) % placeholders.length;
+        searchInput.placeholder = placeholders[placeholderIndex];
+      }, 2500);
+    }
 
     const chips = document.querySelectorAll('.chip');
     const serviceCards = document.querySelectorAll('.service-card');
+
     chips.forEach((chip) => {
       chip.addEventListener('click', () => {
-        chips.forEach((c) => c.classList.remove('bg-white/10'));
-        chip.classList.add('bg-white/10');
+        chips.forEach((c) => c.classList.remove('bg-[var(--primary)]', 'text-white'));
+        chip.classList.add('bg-[var(--primary)]', 'text-white');
         const filter = chip.dataset.filter;
         serviceCards.forEach((card) => {
           const match = filter === 'all' || card.dataset.category === filter;
           if (match) {
-            card.classList.remove('hidden');
-            requestAnimationFrame(() => card.classList.remove('opacity-0', 'scale-95', 'pointer-events-none'));
+            card.classList.remove('hidden', 'is-hidden');
+            requestAnimationFrame(() => card.classList.remove('is-hidden'));
           } else {
-            card.classList.add('opacity-0', 'scale-95', 'pointer-events-none');
-            setTimeout(() => card.classList.add('hidden'), 300);
+            card.classList.add('is-hidden');
+            setTimeout(() => card.classList.add('hidden'), 200);
           }
         });
       });
@@ -761,8 +860,8 @@
     const categoryFilter = document.getElementById('categoryFilter');
     const searchResults = document.getElementById('searchResults');
 
-    searchForm.addEventListener('submit', (e) => {
-      e.preventDefault();
+    searchForm.addEventListener('submit', (event) => {
+      event.preventDefault();
       const query = searchInput.value.trim().toLowerCase();
       const category = categoryFilter.value;
       let matches = 0;
@@ -770,55 +869,83 @@
         const title = card.dataset.title.toLowerCase();
         const cardCategory = card.dataset.category;
         const match = (category === 'all' || cardCategory === category) && (!query || title.includes(query));
-        card.classList.toggle('ring-2', match);
-        card.classList.toggle('ring-blue-500', match);
+        card.classList.toggle('highlight', match);
         if (match) matches += 1;
       });
       searchResults.textContent = matches ? `Showing ${matches} matching services for "${query || category}".` : 'No exact matches found. Try another term.';
       searchResults.classList.remove('hidden');
-      document.getElementById('services').scrollIntoView({ behavior: 'smooth' });
+      document.getElementById('services').scrollIntoView({ behavior: prefersReducedMotion ? 'auto' : 'smooth' });
       setTimeout(() => {
-        serviceCards.forEach((card) => card.classList.remove('ring-2', 'ring-blue-500'));
+        serviceCards.forEach((card) => card.classList.remove('highlight'));
       }, 2000);
     });
 
-    const progressBar = document.getElementById('progressBar');
-    const howSection = document.getElementById('how');
-    window.addEventListener('scroll', () => {
-      const rect = howSection.getBoundingClientRect();
-      const progress = Math.min(Math.max(0, window.innerHeight - rect.top), rect.height);
-      const percent = Math.min(100, (progress / rect.height) * 100);
-      progressBar.style.width = `${percent}%`;
-    });
+    const revealElements = document.querySelectorAll('[data-reveal]');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('is-visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.2 });
+
+    revealElements.forEach((el) => observer.observe(el));
 
     const track = document.getElementById('testimonialTrack');
+    const viewport = document.getElementById('testimonialViewport');
     const prevBtn = document.getElementById('prevTestimonial');
     const nextBtn = document.getElementById('nextTestimonial');
     let slideIndex = 0;
+    let sliderInterval;
+
     function updateSlider() {
       const cardWidth = track.children[0].offsetWidth + 24;
       track.style.transform = `translateX(-${slideIndex * cardWidth}px)`;
     }
+
+    function nextSlide() {
+      slideIndex = (slideIndex + 1) % track.children.length;
+      updateSlider();
+    }
+
     prevBtn.addEventListener('click', () => {
-      slideIndex = Math.max(0, slideIndex - 1);
+      slideIndex = slideIndex === 0 ? track.children.length - 1 : slideIndex - 1;
       updateSlider();
     });
+
     nextBtn.addEventListener('click', () => {
-      slideIndex = Math.min(track.children.length - 1, slideIndex + 1);
-      updateSlider();
+      nextSlide();
     });
+
+    function startAuto() {
+      if (prefersReducedMotion) return;
+      sliderInterval = setInterval(nextSlide, 4500);
+    }
+
+    function stopAuto() {
+      clearInterval(sliderInterval);
+    }
+
+    viewport.addEventListener('mouseenter', stopAuto);
+    viewport.addEventListener('mouseleave', startAuto);
     window.addEventListener('resize', updateSlider);
+    updateSlider();
+    startAuto();
 
     const priceToggle = document.getElementById('priceToggle');
     const toggleDot = document.getElementById('toggleDot');
+    const priceEls = document.querySelectorAll('.price');
     let yearly = false;
+
     priceToggle.addEventListener('click', () => {
       yearly = !yearly;
       toggleDot.style.transform = yearly ? 'translateX(28px)' : 'translateX(0)';
-      document.querySelectorAll('[data-price]').forEach((priceEl) => {
-        const base = Number(priceEl.dataset.price);
-        const newPrice = yearly ? Math.round(base * 0.8) : base;
-        priceEl.textContent = `$${newPrice}`;
+      priceEls.forEach((el) => {
+        const amount = yearly ? el.dataset.yearly : el.dataset.monthly;
+        el.textContent = `$${amount}`;
+        el.classList.add('scale-105');
+        setTimeout(() => el.classList.remove('scale-105'), 200);
       });
     });
 
@@ -837,6 +964,3 @@
   </script>
 </body>
 </html>
-
-
-
